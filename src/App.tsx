@@ -28,19 +28,51 @@ function App() {
 }
 
 function Messages() {
-    return <div>Messages</div>
+    return (
+        <div>
+            <div>
+                <img
+                    src="https://p.bigstockphoto.com/eIdTXLbqQilMs9xbjvcs_bigstock-Aerial-View-Of-Sandy-Beach-Wit-256330393.jpg"
+                    alt=""/>
+            </div>
+            Messages
+        </div>)
 }
 
 function News() {
-    return <div>News</div>
+    return (
+        <div>
+            <div>
+                <img
+                    src="https://p.bigstockphoto.com/eIdTXLbqQilMs9xbjvcs_bigstock-Aerial-View-Of-Sandy-Beach-Wit-256330393.jpg"
+                    alt=""/>
+            </div>
+            News
+        </div>)
 }
 
 function Music() {
-    return <div>Music</div>
+    return (
+        <div>
+            <div>
+                <img
+                    src="https://p.bigstockphoto.com/eIdTXLbqQilMs9xbjvcs_bigstock-Aerial-View-Of-Sandy-Beach-Wit-256330393.jpg"
+                    alt=""/>
+            </div>
+            Music
+        </div>)
 }
 
 function Settings() {
-    return <div>Settings</div>
+    return (
+        <div>
+            <div>
+                <img
+                    src="https://p.bigstockphoto.com/eIdTXLbqQilMs9xbjvcs_bigstock-Aerial-View-Of-Sandy-Beach-Wit-256330393.jpg"
+                    alt=""/>
+            </div>
+            Settings
+        </div>)
 }
 
 export default App;
