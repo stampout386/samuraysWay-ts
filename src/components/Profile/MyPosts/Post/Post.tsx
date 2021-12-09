@@ -1,11 +1,17 @@
 import css from "./Post.module.css";
 import React from "react";
 
-export function Post() {
+export type PostPropsType = {
+    message: string
+    like: number
+}
+
+
+export const Post: React.FC<PostPropsType> = (props) => {
     return (
         <div className={css.item}>
-            <div><img src="https://econet.ru/uploads/pictures/456175/content_photo_1.jpg" alt=""/>Post</div>
-            <div>like</div>
+            <div><img src="https://econet.ru/uploads/pictures/456175/content_photo_1.jpg" alt=""/>{props.message}</div>
+            <div>like {props.like}</div>
         </div>
     )
 }

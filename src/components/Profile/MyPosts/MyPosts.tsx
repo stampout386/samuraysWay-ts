@@ -13,10 +13,9 @@ export function MyPosts() {
                 <button>Add Post</button>
             </div>
             <div className={s.posts}>
-                <Post/>
-                <Post/>
+                <Post message="Hello,how are you?" like={15}/>
+                <Post message="This is my first post!" like={40}/>
             </div>
-
         </div>
     )
 }

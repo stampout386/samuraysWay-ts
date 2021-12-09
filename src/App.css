@@ -10,5 +10,10 @@
     grid-gap: 10px
 }
 
+.content {
+    grid-area: c;
+    background-color: #c6fffd;
+
+}
 
 
