@@ -10,25 +10,5 @@
     grid-gap: 10px
 }
 
-.header img {
-    height: 55px;
-    width: 55px;
-    margin: 1px;
-    border-radius: 50%;
-}
 
-.header {
-    grid-area: h;
-    background-color: #2ed9d4;
-}
 
-.nav {
-    grid-area: n;
-    background-color: #2ed9d4;
-}
-
-.content {
-    grid-area: c;
-    background-color: #c6fffd;
-
-}

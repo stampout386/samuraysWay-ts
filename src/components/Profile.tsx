@@ -1,8 +1,9 @@
 import React from "react";
+import css from './Profile.module.css'
 
-export function Profile(){
+export function Profile() {
     return (
-        <div className='content'>
+        <div className={css.content}>
             <div>
                 <img
                     src="https://p.bigstockphoto.com/eIdTXLbqQilMs9xbjvcs_bigstock-Aerial-View-Of-Sandy-Beach-Wit-256330393.jpg"
@@ -13,8 +14,8 @@ export function Profile(){
                 My posts
                 <div>New post</div>
                 <div>
-                    <div>post 1</div>
-                    <div>post 2</div>
+                    <div className={css.item}>post 1</div>
+                    <div className={css.item}>post 2</div>
                 </div>
             </div>
         </div>
