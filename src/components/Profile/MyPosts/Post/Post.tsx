@@ -2,6 +2,7 @@ import css from "./Post.module.css";
 import React from "react";
 
 export type PostPropsType = {
+    id: number
     message: string
     like: number
 }

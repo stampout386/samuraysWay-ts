@@ -2,7 +2,36 @@ import s from "./MyPosts.module.css";
 import React from "react";
 import {Post} from "./Post/Post";
 
+
 export function MyPosts() {
+
+    let postData = [
+        {
+            id: 1,
+            message: "Hello,how are you?",
+            like: 15
+
+        },
+        {
+            id: 2,
+            message: "This is my first post!",
+            like: 40
+
+        },
+        {
+            id: 3,
+            message: "This is my second post,I like it!",
+            like: 105
+
+        }
+    ]
+
+    let postRenderArray = postData.map(item => {
+        return (
+            <Post id={item.id} message={item.message} like={item.like}/>
+        )
+    })
+
     return (
         <div className={s.postBlock}>
             <h3 className={s.postBlock}>My posts</h3>
@@ -15,8 +44,7 @@ export function MyPosts() {
                 </div>
             </div>
             <div className={s.posts}>
-                <Post message="Hello,how are you?" like={15}/>
-                <Post message="This is my first post!" like={40}/>
+                {postRenderArray}
             </div>
         </div>
     )
