@@ -1,10 +1,11 @@
 import s from "./MyPosts.module.css";
 import React from "react";
 import {Post} from "./Post/Post";
-import {PostDataPropsType} from "../../../index";
+import {ProfilePageType} from "../../../redux/state";
 
 
-export function MyPosts(props:PostDataPropsType) {
+
+export function MyPosts(props:ProfilePageType) {
 
     let postRenderArray = props.postData.map(item => {
         return (

@@ -2,10 +2,12 @@ import React from "react";
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogsPropsType} from "../../index";
+import {DialogsPageType} from "../../redux/state";
 
 
-export function Dialogs(props:DialogsPropsType) {
+
+
+export function Dialogs(props:DialogsPageType) {
 
 
     let dialogsRenderArray = props.dialogsData.map(item => {

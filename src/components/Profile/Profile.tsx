@@ -2,10 +2,11 @@ import React from "react";
 import css from './Profile.module.css'
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {PostDataPropsType} from "../../index";
+import {ProfilePageType} from "../../redux/state";
 
 
-export function Profile(props:PostDataPropsType) {
+
+export function Profile(props:ProfilePageType) {
 
 
     return (

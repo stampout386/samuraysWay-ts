@@ -5,11 +5,10 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import {StatePropsType} from "./index";
 
+import {state} from "./redux/state";
 
-function App(props: StatePropsType) {
-
+function App() {
     return (
 
         <BrowserRouter>
@@ -18,8 +17,10 @@ function App(props: StatePropsType) {
                 <Navbar/>
                 <div className='content'>
                     <Routes>
-                        <Route path={'/profile'} element={<Profile postData={props.postData}/>}/>
-                        <Route path={'/dialogs'} element={<Dialogs dialogsData={props.dialogsData} messagesData={props.messagesData}/>}/>
+                        <Route path={'/profile'} element={<Profile postData={state.profilePage.postData}/>}/>
+                        <Route path={'/dialogs'}
+                               element={<Dialogs dialogsData={state.dialogsPage.dialogsData}
+                                                 messagesData={state.dialogsPage.messagesData}/>}/>
                         <Route path={'/news'} element={<News/>}/>
                         <Route path={'/music'} element={<Music/>}/>
                         <Route path={'/settings'} element={<Settings/>}/>
