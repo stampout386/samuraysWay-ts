@@ -1,32 +1,12 @@
 import s from "./MyPosts.module.css";
 import React from "react";
 import {Post} from "./Post/Post";
+import {PostDataPropsType} from "../../../index";
 
 
-export function MyPosts() {
+export function MyPosts(props:PostDataPropsType) {
 
-    let postData = [
-        {
-            id: 1,
-            message: "Hello,how are you?",
-            like: 15
-
-        },
-        {
-            id: 2,
-            message: "This is my first post!",
-            like: 40
-
-        },
-        {
-            id: 3,
-            message: "This is my second post,I like it!",
-            like: 105
-
-        }
-    ]
-
-    let postRenderArray = postData.map(item => {
+    let postRenderArray = props.postData.map(item => {
         return (
             <Post id={item.id} message={item.message} like={item.like}/>
         )

@@ -1,0 +1,14 @@
+.item {
+    margin: 5px;
+    color: #143434;
+    text-decoration: none;
+}
+
+.active {
+    color: #2f4f50;
+    text-decoration: none;
+}
+
+.dialog {
+    margin-top: 10px;
+}
