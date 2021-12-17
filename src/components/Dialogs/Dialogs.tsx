@@ -30,7 +30,13 @@ export function Dialogs() {
         {id: 4, name: 'Helga'},
         {id: 5, name: 'Stasy'},
         {id: 6, name: 'Natali'},
-    ]
+    ];
+    let messagesData = [
+        {id: 1, message: "Hello"},
+        {id: 2, message: "How are you?"},
+        {id: 3, message: "You are calling me?"},
+        {id: 4, message: "i didn't hear,sorry"},
+    ];
 
     let dialogsRenderArray = dialogsData.map(item => {
         return (
@@ -39,14 +45,6 @@ export function Dialogs() {
             </li>
         )
     })
-
-    let messagesData = [
-        {id: 1, message: "Hello"},
-        {id: 2, message: "How are you?"},
-        {id: 3, message: "You are calling me?"},
-        {id: 4, message: "i didn't hear,sorry"},
-    ];
-
     let messagesRenderArray = messagesData.map(item => {
         return (
             <Message message={item.message}/>
