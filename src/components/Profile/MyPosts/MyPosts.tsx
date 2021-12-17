@@ -4,13 +4,15 @@ import {Post} from "./Post/Post";
 
 export function MyPosts() {
     return (
-        <div>
-            My posts
-            <div>
+        <div className={s.postBlock}>
+            <h3 className={s.postBlock}>My posts</h3>
+            <div className={s.postBlock}>
                 <div>
                     <textarea></textarea>
                 </div>
-                <button>Add Post</button>
+                <div>
+                    <button>Add Post</button>
+                </div>
             </div>
             <div className={s.posts}>
                 <Post message="Hello,how are you?" like={15}/>

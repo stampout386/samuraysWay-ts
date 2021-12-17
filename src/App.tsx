@@ -4,6 +4,7 @@ import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {Dialogs} from "./components/Dialogs/Dialogs";
 
 function App() {
     return (
@@ -15,7 +16,7 @@ function App() {
                 <div className='content'>
                     <Routes>
                         <Route path={'/profile'} element={<Profile/>}/>
-                        <Route path={'/messages'} element={<Messages/>}/>
+                        <Route path={'/dialogs'} element={<Dialogs/>}/>
                         <Route path={'/news'} element={<News/>}/>
                         <Route path={'/music'} element={<Music/>}/>
                         <Route path={'/settings'} element={<Settings/>}/>
@@ -27,17 +28,6 @@ function App() {
     );
 }
 
-function Messages() {
-    return (
-        <div>
-            <div>
-                <img
-                    src="https://p.bigstockphoto.com/eIdTXLbqQilMs9xbjvcs_bigstock-Aerial-View-Of-Sandy-Beach-Wit-256330393.jpg"
-                    alt=""/>
-            </div>
-            Messages
-        </div>)
-}
 
 function News() {
     return (

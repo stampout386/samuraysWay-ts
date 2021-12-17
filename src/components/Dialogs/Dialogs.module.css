@@ -1,0 +1,31 @@
+.item {
+    margin: 5px;
+    color: #143434;
+    text-decoration: none;
+}
+
+.active {
+    color: #2f4f50;
+    text-decoration: none;
+}
+
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    padding: 10px;
+}
+
+.dialogsItem {
+}
+
+.dialog {
+    margin-top: 10px;
+}
+
+.messages {
+
+}
+
+.message {
+    margin-top: 5px;
+}
