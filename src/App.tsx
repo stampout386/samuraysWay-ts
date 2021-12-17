@@ -17,10 +17,9 @@ function App() {
                 <Navbar/>
                 <div className='content'>
                     <Routes>
-                        <Route path={'/profile'} element={<Profile postData={state.profilePage.postData}/>}/>
+                        <Route path={'/profile'} element={<Profile profilePage={state.profilePage}/>}/>
                         <Route path={'/dialogs'}
-                               element={<Dialogs dialogsData={state.dialogsPage.dialogsData}
-                                                 messagesData={state.dialogsPage.messagesData}/>}/>
+                               element={<Dialogs dialogsPage={state.dialogsPage}/>}/>
                         <Route path={'/news'} element={<News/>}/>
                         <Route path={'/music'} element={<Music/>}/>
                         <Route path={'/settings'} element={<Settings/>}/>

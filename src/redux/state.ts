@@ -25,6 +25,13 @@ export type RootStateType = {
     dialogsPage: DialogsPageType
 }
 
+export type ProfilePagePropsType = {
+    profilePage: ProfilePageType
+}
+export type DialogsPagePropsType = {
+    dialogsPage : DialogsPageType
+}
+
 export let state: RootStateType = {
     profilePage: {
         postData: [
