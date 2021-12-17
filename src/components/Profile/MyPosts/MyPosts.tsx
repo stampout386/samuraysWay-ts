@@ -33,8 +33,8 @@ export function MyPosts() {
     })
 
     return (
-        <div className={s.postBlock}>
-            <h3 className={s.postBlock}>My posts</h3>
+        <div>
+            <h3>My posts</h3>
             <div className={s.postBlock}>
                 <div>
                     <textarea></textarea>
