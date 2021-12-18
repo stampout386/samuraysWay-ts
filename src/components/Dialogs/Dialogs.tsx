@@ -10,9 +10,8 @@ export function Dialogs(props: DialogsPagePropsType) {
 
     let dialogsRenderArray = props.dialogsPage.dialogsData.map(item => {
         return (
-            <li>
-                <DialogItem id={item.id} name={item.name}/>
-            </li>
+            <DialogItem id={item.id} name={item.name} src={item.src}/>
+
         )
     })
     let messagesRenderArray = props.dialogsPage.messagesData.map(item => {
@@ -24,10 +23,7 @@ export function Dialogs(props: DialogsPagePropsType) {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
-                <ul>
-                    {dialogsRenderArray}
-                </ul>
-
+                {dialogsRenderArray}
             </div>
             <div className={s.messages}>
                 {messagesRenderArray}

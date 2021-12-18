@@ -6,7 +6,6 @@ import {ProfilePagePropsType} from "../../redux/state";
 
 
 export function Profile(props: ProfilePagePropsType) {
-    debugger;
 
     return (
         <div className={css.content}>

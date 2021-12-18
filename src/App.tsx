@@ -14,7 +14,7 @@ function App() {
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar/>
+                <Navbar sidebarPage={state.sidebarPage}/>
                 <div className='content'>
                     <Routes>
                         <Route path={'/profile'} element={<Profile profilePage={state.profilePage}/>}/>
