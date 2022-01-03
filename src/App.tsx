@@ -6,20 +6,33 @@ import {Profile} from "./components/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 
-import {state} from "./redux/state";
+import {
+    addMessage,
+    addPost,
+    changeNewMessageTextCallBack,
+    changeNewPostTextCallBack,
+    RootStateType,
+} from "./redux/state";
 
-function App() {
+type AppPropsType = {
+    state: RootStateType
+}
+
+function App(props: AppPropsType) {
     return (
 
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar sidebarPage={state.sidebarPage}/>
+                <Navbar sidebarPage={props.state.sidebarPage}/>
                 <div className='content'>
                     <Routes>
-                        <Route path={'/profile'} element={<Profile profilePage={state.profilePage}/>}/>
+                        <Route path={'/profile'}
+                               element={<Profile profilePage={props.state.profilePage} addPostCallBack={addPost}
+                                                 changeNewPostTextCallBack={changeNewPostTextCallBack}/>}/>
                         <Route path={'/dialogs'}
-                               element={<Dialogs dialogsPage={state.dialogsPage}/>}/>
+                               element={<Dialogs dialogsPage={props.state.dialogsPage} addMessageCallBack={addMessage}
+                                                 changeNewMessageTextCallBack={changeNewMessageTextCallBack}/>}/>
                         <Route path={'/news'} element={<News/>}/>
                         <Route path={'/music'} element={<Music/>}/>
                         <Route path={'/settings'} element={<Settings/>}/>

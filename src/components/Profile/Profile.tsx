@@ -10,7 +10,9 @@ export function Profile(props: ProfilePagePropsType) {
     return (
         <div className={css.content}>
             <ProfileInfo/>
-            <MyPosts postData={props.profilePage.postData}/>
+            <MyPosts newPostText={props.profilePage.newPostText} postData={props.profilePage.postData}
+                     addPostCallBack={props.addPostCallBack}
+                     changeNewPostTextCallBack={props.changeNewPostTextCallBack}/>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent, ChangeEventHandler} from "react";
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
@@ -20,6 +20,15 @@ export function Dialogs(props: DialogsPagePropsType) {
         )
     })
 
+
+    const addMessage = () => {
+        props.addMessageCallBack(props.dialogsPage.newMessageText)
+    }
+
+    const onchangeNewMessageText = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.changeNewMessageTextCallBack(e.currentTarget.value)
+    }
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItem}>
@@ -28,5 +37,11 @@ export function Dialogs(props: DialogsPagePropsType) {
             <div className={s.messages}>
                 {messagesRenderArray}
             </div>
+            <div className={s.textArea}>
+                    <textarea value={props.dialogsPage.newMessageText}
+                              onChange={onchangeNewMessageText}></textarea>
+                <button onClick={addMessage}>Add message</button>
+            </div>
+
         </div>)
 }
