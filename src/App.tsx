@@ -7,32 +7,31 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 
 import {
-    addMessage,
-    addPost,
-    changeNewMessageTextCallBack,
-    changeNewPostTextCallBack,
-    RootStateType,
+    StoreType,
 } from "./redux/state";
 
 type AppPropsType = {
-    state: RootStateType
+    store: StoreType
 }
 
 function App(props: AppPropsType) {
+    const state = props.store.getState();
     return (
 
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar sidebarPage={props.state.sidebarPage}/>
+                <Navbar sidebarPage={state.sidebarPage}/>
                 <div className='content'>
                     <Routes>
                         <Route path={'/profile'}
-                               element={<Profile profilePage={props.state.profilePage} addPostCallBack={addPost}
-                                                 changeNewPostTextCallBack={changeNewPostTextCallBack}/>}/>
+                               element={<Profile profilePage={state.profilePage}
+                                                 addPostCallBack={props.store.addPost.bind(props.store)}
+                                                 changeNewPostTextCallBack={props.store.changeNewPostTextCallBack.bind(props.store)}/>}/>
                         <Route path={'/dialogs'}
-                               element={<Dialogs dialogsPage={props.state.dialogsPage} addMessageCallBack={addMessage}
-                                                 changeNewMessageTextCallBack={changeNewMessageTextCallBack}/>}/>
+                               element={<Dialogs dialogsPage={state.dialogsPage}
+                                                 addMessageCallBack={props.store.addMessage.bind(props.store)}
+                                                 changeNewMessageTextCallBack={props.store.changeNewMessageTextCallBack.bind(props.store)}/>}/>
                         <Route path={'/news'} element={<News/>}/>
                         <Route path={'/music'} element={<Music/>}/>
                         <Route path={'/settings'} element={<Settings/>}/>

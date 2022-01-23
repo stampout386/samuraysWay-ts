@@ -1,4 +1,4 @@
-import {rerenderEntireTree} from "../rerender";
+import {stat} from "fs";
 
 export type MessagesDataType = {
     id: number
@@ -53,97 +53,221 @@ export type SideBarPropsType = {
     sidebarPage: SidebarDataType
 }
 
-export let state: RootStateType = {
-    profilePage: {
-        newPostText: '',
-        postData: [
-            {
-                id: 1,
-                message: "Hello,how are you?",
-                like: 15
+export type ObserverType = (state: RootStateType) => void
 
-            },
-            {
-                id: 2,
-                message: "This is my first post!",
-                like: 40
+// let rerenderEntireTree = (state: RootStateType) => {
+//
+// }
+// export let state: RootStateType = {
+//     profilePage: {
+//         newPostText: '',
+//         postData: [
+//             {
+//                 id: 1,
+//                 message: "Hello,how are you?",
+//                 like: 15
+//
+//             },
+//             {
+//                 id: 2,
+//                 message: "This is my first post!",
+//                 like: 40
+//
+//             },
+//             {
+//                 id: 3,
+//                 message: "This is my second post,I like it!",
+//                 like: 105
+//
+//             }
+//         ]
+//     },
+//     dialogsPage: {
+//         dialogsData: [
+//             {id: 1, name: 'Mike', src: 'https://www.blast.hk/attachments/68493/'},
+//             {id: 2, name: 'Kate', src: 'https://cspromogame.ru//storage/upload_images/avatars/1299.jpg'},
+//             {
+//                 id: 3,
+//                 name: 'Kris',
+//                 src: 'https://russia-dropshipping.ru/800/600/https/proprikol.ru/wp-content/uploads/2019/08/krutye-kartinki-dlya-vk-22.jpg'
+//             },
+//             {
+//                 id: 4,
+//                 name: 'Helga',
+//                 src: 'https://russia-dropshipping.ru/800/600/https/proprikol.ru/wp-content/uploads/2019/08/krutye-kartinki-dlya-vk-24.jpg'
+//             },
+//             {id: 5, name: 'Stasy', src: 'https://www.meme-arsenal.com/memes/45bd46f032da02c02977e72df72e3369.jpg'},
+//             {
+//                 id: 6,
+//                 name: 'Natali',
+//                 src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoIAao3RTHBzzfzkppcdaJuCjWoSHJGzIXeA&usqp=CAU'
+//             },
+//         ],
+//         messagesData: [
+//             {id: 1, message: "Hello"},
+//             {id: 2, message: "How are you?"},
+//             {id: 3, message: "You are calling me?"},
+//             {id: 4, message: "i didn't hear,sorry"},
+//         ],
+//         newMessageText: ''
+//     },
+//     sidebarPage: {
+//         friendsData:
+//             [{id: 1, name: 'Mike', src: 'https://www.blast.hk/attachments/68493/'},
+//                 {id: 2, name: 'Kate', src: 'https://cspromogame.ru//storage/upload_images/avatars/1299.jpg'},
+//                 {
+//                     id: 4,
+//                     name: 'Helga',
+//                     src: 'https://russia-dropshipping.ru/800/600/https/proprikol.ru/wp-content/uploads/2019/08/krutye-kartinki-dlya-vk-24.jpg'
+//                 }]
+//     }
+// }
+// export const addPost = () => {
+//     let post: PostDataType = {
+//         id: new Date().getTime(),
+//         message: state.profilePage.newPostText,
+//         like: 0
+//     }
+//     state.profilePage.postData.push(post)
+//     changeNewPostTextCallBack('')
+//     rerenderEntireTree(state)
+// }
+// export const addMessage = (textMessage: string) => {
+//     let message: MessagesDataType = {
+//         id: new Date().getTime(),
+//         message: textMessage,
+//     }
+//     state.dialogsPage.messagesData.push(message);
+//     changeNewMessageTextCallBack('')
+//     rerenderEntireTree(state)
+// }
+// export const changeNewPostTextCallBack = (newPostText: string) => {
+//     state.profilePage.newPostText = newPostText;
+//     rerenderEntireTree(state)
+// }
+// export const changeNewMessageTextCallBack = (newMessageText: string) => {
+//     state.dialogsPage.newMessageText = newMessageText;
+//     rerenderEntireTree(state)
+// }
+// export const subscribe = (observer: ObserverType) => {
+//     rerenderEntireTree = observer
+// }
+export type StoreType = {
+    _state: RootStateType
+    rerenderEntireTree: (state: RootStateType) => void
+    addPost: () => void
+    addMessage: (textMessage: string) => void
+    changeNewPostTextCallBack: (newPostText: string) => void
+    changeNewMessageTextCallBack: (newMessageText: string) => void
+    getState:() => RootStateType
+    subscribe: (observer: ObserverType) => void
+}
 
-            },
-            {
-                id: 3,
-                message: "This is my second post,I like it!",
-                like: 105
+export let store: StoreType = {
+    _state: {
+        profilePage: {
+            newPostText: '',
+            postData: [
+                {
+                    id: 1,
+                    message: "Hello,how are you?",
+                    like: 15
 
-            }
-        ]
-    },
-    dialogsPage: {
-        dialogsData: [
-            {id: 1, name: 'Mike', src: 'https://www.blast.hk/attachments/68493/'},
-            {id: 2, name: 'Kate', src: 'https://cspromogame.ru//storage/upload_images/avatars/1299.jpg'},
-            {
-                id: 3,
-                name: 'Kris',
-                src: 'https://russia-dropshipping.ru/800/600/https/proprikol.ru/wp-content/uploads/2019/08/krutye-kartinki-dlya-vk-22.jpg'
-            },
-            {
-                id: 4,
-                name: 'Helga',
-                src: 'https://russia-dropshipping.ru/800/600/https/proprikol.ru/wp-content/uploads/2019/08/krutye-kartinki-dlya-vk-24.jpg'
-            },
-            {id: 5, name: 'Stasy', src: 'https://www.meme-arsenal.com/memes/45bd46f032da02c02977e72df72e3369.jpg'},
-            {
-                id: 6,
-                name: 'Natali',
-                src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoIAao3RTHBzzfzkppcdaJuCjWoSHJGzIXeA&usqp=CAU'
-            },
-        ],
-        messagesData: [
-            {id: 1, message: "Hello"},
-            {id: 2, message: "How are you?"},
-            {id: 3, message: "You are calling me?"},
-            {id: 4, message: "i didn't hear,sorry"},
-        ],
-        newMessageText: ''
-    },
-    sidebarPage: {
-        friendsData:
-            [{id: 1, name: 'Mike', src: 'https://www.blast.hk/attachments/68493/'},
+                },
+                {
+                    id: 2,
+                    message: "This is my first post!",
+                    like: 40
+
+                },
+                {
+                    id: 3,
+                    message: "This is my second post,I like it!",
+                    like: 105
+
+                }
+            ]
+        },
+        dialogsPage: {
+            dialogsData: [
+                {id: 1, name: 'Mike', src: 'https://www.blast.hk/attachments/68493/'},
                 {id: 2, name: 'Kate', src: 'https://cspromogame.ru//storage/upload_images/avatars/1299.jpg'},
+                {
+                    id: 3,
+                    name: 'Kris',
+                    src: 'https://russia-dropshipping.ru/800/600/https/proprikol.ru/wp-content/uploads/2019/08/krutye-kartinki-dlya-vk-22.jpg'
+                },
                 {
                     id: 4,
                     name: 'Helga',
                     src: 'https://russia-dropshipping.ru/800/600/https/proprikol.ru/wp-content/uploads/2019/08/krutye-kartinki-dlya-vk-24.jpg'
-                }]
+                },
+                {id: 5, name: 'Stasy', src: 'https://www.meme-arsenal.com/memes/45bd46f032da02c02977e72df72e3369.jpg'},
+                {
+                    id: 6,
+                    name: 'Natali',
+                    src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoIAao3RTHBzzfzkppcdaJuCjWoSHJGzIXeA&usqp=CAU'
+                },
+            ],
+            messagesData: [
+                {id: 1, message: "Hello"},
+                {id: 2, message: "How are you?"},
+                {id: 3, message: "You are calling me?"},
+                {id: 4, message: "i didn't hear,sorry"},
+            ],
+            newMessageText: ''
+        },
+        sidebarPage: {
+            friendsData:
+                [{id: 1, name: 'Mike', src: 'https://www.blast.hk/attachments/68493/'},
+                    {id: 2, name: 'Kate', src: 'https://cspromogame.ru//storage/upload_images/avatars/1299.jpg'},
+                    {
+                        id: 4,
+                        name: 'Helga',
+                        src: 'https://russia-dropshipping.ru/800/600/https/proprikol.ru/wp-content/uploads/2019/08/krutye-kartinki-dlya-vk-24.jpg'
+                    }]
+        }
+    },
+    rerenderEntireTree(state: RootStateType) {
+
+    },
+    addPost() {
+        let post: PostDataType = {
+            id: new Date().getTime(),
+            message: this._state.profilePage.newPostText,
+            like: 0
+        }
+        this._state.profilePage.postData.push(post)
+        this.changeNewPostTextCallBack('')
+        this.rerenderEntireTree(this._state)
+    },
+    addMessage(textMessage: string) {
+        let message: MessagesDataType = {
+            id: new Date().getTime(),
+            message: textMessage,
+        }
+        this._state.dialogsPage.messagesData.push(message);
+        this.changeNewMessageTextCallBack('')
+        this.rerenderEntireTree(this._state)
+    },
+    changeNewPostTextCallBack(newPostText: string) {
+        this._state.profilePage.newPostText = newPostText;
+        this.rerenderEntireTree(this._state)
+    },
+    changeNewMessageTextCallBack(newMessageText: string) {
+        this._state.dialogsPage.newMessageText = newMessageText;
+        this.rerenderEntireTree(this._state)
+
+    },
+    getState(){
+        return this._state
+    },
+    subscribe(observer: ObserverType) {
+        this.rerenderEntireTree = observer
     }
 }
 
 
-export const addPost = () => {
-    let post: PostDataType = {
-        id: new Date().getTime(),
-        message: state.profilePage.newPostText,
-        like: 0
-    }
-    state.profilePage.postData.push(post)
-    changeNewPostTextCallBack('')
-    rerenderEntireTree(state)
-}
-export const addMessage = (textMessage: string) => {
-    let message: MessagesDataType = {
-        id: new Date().getTime(),
-        message: textMessage,
-    }
-    state.dialogsPage.messagesData.push(message);
-    changeNewMessageTextCallBack('')
-    rerenderEntireTree(state)
-}
 
-export const changeNewPostTextCallBack = (newPostText: string) => {
-    state.profilePage.newPostText = newPostText;
-    rerenderEntireTree(state)
-}
-export const changeNewMessageTextCallBack = (newMessageText: string) => {
-    state.dialogsPage.newMessageText = newMessageText;
-    rerenderEntireTree(state);
-}
+
+

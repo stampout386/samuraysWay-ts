@@ -7,7 +7,7 @@ export function Navbar(props: SideBarPropsType) {
 
     let friendsRenderArray = props.sidebarPage.friendsData.map(item => {
         return (
-            <div className={css.friendsAva}><img src={item.src} alt=""/><span>{item.name}</span></div>
+            <div key={item.id} className={css.friendsAva}><img src={item.src} alt=""/><span>{item.name}</span></div>
         )
 
     })

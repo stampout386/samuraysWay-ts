@@ -1,4 +1,4 @@
-import React, {ChangeEvent, ChangeEventHandler} from "react";
+import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
@@ -10,13 +10,14 @@ export function Dialogs(props: DialogsPagePropsType) {
 
     let dialogsRenderArray = props.dialogsPage.dialogsData.map(item => {
         return (
-            <DialogItem id={item.id} name={item.name} src={item.src}/>
+
+            <DialogItem key={item.id} id={item.id} name={item.name} src={item.src}/>
 
         )
     })
     let messagesRenderArray = props.dialogsPage.messagesData.map(item => {
         return (
-            <Message message={item.message}/>
+            <Message key={item.id} message={item.message}/>
         )
     })
 

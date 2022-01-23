@@ -1,10 +1,10 @@
 import s from "./MyPosts.module.css";
-import React, {ChangeEvent, ChangeEventHandler} from "react";
+import React, {ChangeEvent} from "react";
 import {Post} from "./Post/Post";
-import {PostDataType, ProfilePageType} from "../../../redux/state";
+import {PostDataType} from "../../../redux/state";
 
 type MyPostsType = {
-    newPostText:string
+    newPostText: string
     postData: Array<PostDataType>,
     addPostCallBack: () => void
     changeNewPostTextCallBack: (newText: string) => void
@@ -13,7 +13,7 @@ type MyPostsType = {
 export function MyPosts(props: MyPostsType) {
     let postRenderArray = props.postData.map(item => {
         return (
-            <Post id={item.id} message={item.message} like={item.like}/>
+            <Post key={item.id} id={item.id} message={item.message} like={item.like}/>
         )
     })
 
