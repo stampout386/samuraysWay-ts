@@ -6,12 +6,14 @@ import {Profile} from "./components/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 
-import {
-    StoreType,
-} from "./redux/state";
+import {ActionType, StoreType,} from "./redux/state";
+import {News} from "./components/News/News";
+import {Music} from "./components/Music/Music";
+import {Settings} from "./components/Settings/Settings";
 
 type AppPropsType = {
     store: StoreType
+    dispatch: (action: ActionType) => void
 }
 
 function App(props: AppPropsType) {
@@ -26,12 +28,10 @@ function App(props: AppPropsType) {
                     <Routes>
                         <Route path={'/profile'}
                                element={<Profile profilePage={state.profilePage}
-                                                 addPostCallBack={props.store.addPost.bind(props.store)}
-                                                 changeNewPostTextCallBack={props.store.changeNewPostTextCallBack.bind(props.store)}/>}/>
+                                                 dispatch={props.dispatch}/>}/>
                         <Route path={'/dialogs'}
                                element={<Dialogs dialogsPage={state.dialogsPage}
-                                                 addMessageCallBack={props.store.addMessage.bind(props.store)}
-                                                 changeNewMessageTextCallBack={props.store.changeNewMessageTextCallBack.bind(props.store)}/>}/>
+                                                 dispatch={props.dispatch}/>}/>
                         <Route path={'/news'} element={<News/>}/>
                         <Route path={'/music'} element={<Music/>}/>
                         <Route path={'/settings'} element={<Settings/>}/>
@@ -43,41 +43,5 @@ function App(props: AppPropsType) {
     );
 }
 
-
-function News() {
-    return (
-        <div>
-            <div>
-                <img
-                    src="https://p.bigstockphoto.com/eIdTXLbqQilMs9xbjvcs_bigstock-Aerial-View-Of-Sandy-Beach-Wit-256330393.jpg"
-                    alt=""/>
-            </div>
-            News
-        </div>)
-}
-
-function Music() {
-    return (
-        <div>
-            <div>
-                <img
-                    src="https://p.bigstockphoto.com/eIdTXLbqQilMs9xbjvcs_bigstock-Aerial-View-Of-Sandy-Beach-Wit-256330393.jpg"
-                    alt=""/>
-            </div>
-            Music
-        </div>)
-}
-
-function Settings() {
-    return (
-        <div>
-            <div>
-                <img
-                    src="https://p.bigstockphoto.com/eIdTXLbqQilMs9xbjvcs_bigstock-Aerial-View-Of-Sandy-Beach-Wit-256330393.jpg"
-                    alt=""/>
-            </div>
-            Settings
-        </div>)
-}
 
 export default App;
