@@ -4,7 +4,7 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {
     DialogsPagePropsType,
-} from "../../redux/state";
+} from "../../redux/store";
 import {addMessageAC, onChangeNewMessageTextAC} from "../../redux/dialogsReduser";
 
 

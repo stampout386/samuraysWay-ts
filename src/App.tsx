@@ -6,18 +6,18 @@ import {Profile} from "./components/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 
-import {ActionType, StoreType,} from "./redux/state";
+import {ActionType, RootStateType, StoreType,} from "./redux/store";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 
 type AppPropsType = {
-    store: StoreType
+    store: RootStateType
     dispatch: (action: ActionType) => void
 }
 
 function App(props: AppPropsType) {
-    const state = props.store.getState();
+    const state = props.store;
     return (
 
         <BrowserRouter>

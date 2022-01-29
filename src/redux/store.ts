@@ -36,6 +36,8 @@ export type SidebarDataType = {
 }
 
 
+
+
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType

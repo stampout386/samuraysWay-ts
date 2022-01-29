@@ -1,6 +1,16 @@
-import {ActionType, SidebarDataType} from "./state";
+import {ActionType, SidebarDataType} from "./store";
 
+let initialState = {
+    friendsData:
+        [{id: 1, name: 'Mike', src: 'https://www.blast.hk/attachments/68493/'},
+            {id: 2, name: 'Kate', src: 'https://cspromogame.ru//storage/upload_images/avatars/1299.jpg'},
+            {
+                id: 4,
+                name: 'Helga',
+                src: 'https://russia-dropshipping.ru/800/600/https/proprikol.ru/wp-content/uploads/2019/08/krutye-kartinki-dlya-vk-24.jpg'
+            }]
+}
 
-export const sidebarReducer = (state: SidebarDataType, action: ActionType): SidebarDataType => {
+export const sidebarReducer = (state: SidebarDataType = initialState, action: ActionType): SidebarDataType => {
     return state
 }
