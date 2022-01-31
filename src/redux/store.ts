@@ -2,6 +2,7 @@
 import {addPostAC, onChangeNewPostAC, profileReducer} from "./profileReducer";
 import {addMessageAC, dialogsReducer, onChangeNewMessageTextAC} from "./dialogsReduser";
 import {sidebarReducer} from "./sidebarReducer";
+import {StoreReduxType} from "./redux-store";
 
 export type MessagesDataType = {
     id: number
@@ -36,8 +37,6 @@ export type SidebarDataType = {
 }
 
 
-
-
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
@@ -45,12 +44,18 @@ export type RootStateType = {
 }
 
 export type ProfilePagePropsType = {
-    profilePage: ProfilePageType
-    dispatch: (action: ActionType) => void
+    // profilePage: ProfilePageType
+    // dispatch: (action: ActionType) => void
+    store: StoreReduxType
 }
 export type DialogsPagePropsType = {
     dialogsPage: DialogsPageType
-    dispatch: (action: ActionType) => void
+    addMessage: (message: string) => void
+    onchangeNewMessageText: (text: string) => void
+}
+
+export type DialogsContainerPropsType = {
+    store: StoreReduxType
 }
 export type SideBarPropsType = {
     sidebarPage: SidebarDataType

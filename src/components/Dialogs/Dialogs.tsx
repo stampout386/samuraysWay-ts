@@ -9,8 +9,7 @@ import {addMessageAC, onChangeNewMessageTextAC} from "../../redux/dialogsReduser
 
 
 export function Dialogs(props: DialogsPagePropsType) {
-
-
+    debugger
     let dialogsRenderArray = props.dialogsPage.dialogsData.map(item => {
         return (
 
@@ -26,13 +25,11 @@ export function Dialogs(props: DialogsPagePropsType) {
 
 
     const addMessage = () => {
-        props.dispatch(addMessageAC(props.dialogsPage.newMessageText))
-        // props.addMessageCallBack(props.dialogsPage.newMessageText)
+        props.addMessage(props.dialogsPage.newMessageText)
     }
 
     const onchangeNewMessageText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(onChangeNewMessageTextAC(e.currentTarget.value))
-        // props.changeNewMessageTextCallBack(e.currentTarget.value)
+        props.onchangeNewMessageText(e.currentTarget.value)
     }
 
     return (
@@ -45,7 +42,10 @@ export function Dialogs(props: DialogsPagePropsType) {
             </div>
             <div className={s.textArea}>
                     <textarea value={props.dialogsPage.newMessageText}
-                              onChange={onchangeNewMessageText}></textarea>
+                              onChange={onchangeNewMessageText}
+                              placeholder={'Enter your message'}>
+
+                    </textarea>
                 <button onClick={addMessage}>Add message</button>
             </div>
 

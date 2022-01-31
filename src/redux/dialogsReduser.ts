@@ -41,13 +41,13 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
                 id: new Date().getTime(),
                 message: action.textMessage,
             }
-            state.messagesData.push(message);
-            state.newMessageText = "";
-            return state
+            // state.messagesData.push(message);
+            // state.newMessageText = "";
+            return  {...state,newMessageText:'',messagesData:[...state.messagesData,message]}
         }
         case CHANGE_NEW_MESSAGE_TEXT: {
-            state.newMessageText = action.newMessageText;
-            return state
+            // state.newMessageText = action.newMessageText;
+            return {...state,newMessageText:action.newMessageText}
         }
         default : {
             return state

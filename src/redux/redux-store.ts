@@ -1,8 +1,8 @@
-import {combineReducers, createStore} from "redux";
+import {combineReducers, createStore, EmptyObject, Store} from "redux";
 import {profileReducer} from "./profileReducer";
 import {dialogsReducer} from "./dialogsReduser";
 import {sidebarReducer} from "./sidebarReducer";
-import {DialogsPageType, ProfilePageType, SidebarDataType} from "./store";
+import {ActionType, DialogsPageType, ProfilePageType, SidebarDataType} from "./store";
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -20,5 +20,8 @@ export let reducers = combineReducers({
         sidebarPage: sidebarReducer,
     }
 )
+
+
+export type StoreReduxType = Store<EmptyObject & { profilePage: ProfilePageType; dialogsPage: DialogsPageType; sidebarPage: SidebarDataType; }, ActionType>
 
 export let store = createStore(reducers)

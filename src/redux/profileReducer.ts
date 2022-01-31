@@ -28,21 +28,18 @@ let initialState = {
     ]
 }
 
-export const profileReducer = (state:ProfilePageType = initialState,action:ActionType):ProfilePageType => {
-    switch (action.type){
-        case ADD_POST:{
+export const profileReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
+    switch (action.type) {
+        case ADD_POST: {
             let post: PostDataType = {
                 id: new Date().getTime(),
-                message: state.newPostText,
+                message: action.newPostText,
                 like: 0
             }
-            state.postData.push(post)
-            state.newPostText =''
-            return state
+            return {...state, newPostText: '', postData: [...state.postData, post]}
         }
-        case CHANGE_NEW_POST_TEXT:{
-            state.newPostText = action.newPostText;
-            return state
+        case CHANGE_NEW_POST_TEXT: {
+            return {...state, newPostText: action.newPostText}
         }
         default: {
             return state
@@ -52,10 +49,11 @@ export const profileReducer = (state:ProfilePageType = initialState,action:Actio
 }
 
 
-export const addPostAC = () => {
+export const addPostAC = (postText: string) => {
 
     return {
-        type: ADD_POST
+        type: ADD_POST,
+        newPostText: postText
     } as const
 }
 export const onChangeNewPostAC = (newPostText: string) => {
