@@ -5,6 +5,7 @@ import {RootStateType, store} from "./redux/redux-store";
 import ReactDOM from "react-dom";
 import App from "./App";
 import {Provider} from 'react-redux'
+import {BrowserRouter} from "react-router-dom";
 
 
 function rerenderEntireTree(state: RootStateType) {
@@ -12,10 +13,11 @@ function rerenderEntireTree(state: RootStateType) {
 
     ReactDOM.render(
         <React.StrictMode>
-
-            <Provider store={store}>
-                <App/>
-            </Provider>
+            <BrowserRouter>
+                <Provider store={store}>
+                    <App/>
+                </Provider>
+            </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')
     );
