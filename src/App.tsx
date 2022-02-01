@@ -13,6 +13,8 @@ import {NavbarContainer} from "./components/Navbar/NavbarContainer";
 
 
 function App() {
+
+
     return (
         <div className='app-wrapper'>
             <Header/>

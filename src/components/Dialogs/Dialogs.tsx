@@ -9,7 +9,6 @@ import {addMessageAC, onChangeNewMessageTextAC} from "../../redux/dialogsReduser
 
 
 export function Dialogs(props: DialogsPagePropsType) {
-    debugger
     let dialogsRenderArray = props.dialogsPage.dialogsData.map(item => {
         return (
 
