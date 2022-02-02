@@ -34,6 +34,11 @@ export function Navbar(props: SideBarPropsType) {
                 <NavLink to={'/settings'}
                          className={({isActive}) => (isActive ? css.active : css.item)}>Settings</NavLink>
             </div>
+            <div className={css.item}>
+                <NavLink to={'/users'}
+                         className={({isActive}) => (isActive ? css.active : css.item)}>Users</NavLink>
+            </div>
+
             <div className={css.friends}>
                 <h3>Friends</h3>
                 <div className={css.friendsAvaGrid}>

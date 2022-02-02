@@ -3,6 +3,7 @@ import {addPostAC, onChangeNewPostAC, profileReducer} from "./profileReducer";
 import {addMessageAC, dialogsReducer, onChangeNewMessageTextAC} from "./dialogsReduser";
 import {sidebarReducer} from "./sidebarReducer";
 import {StoreReduxType} from "./redux-store";
+import {followAC, setUsersAC, unfollowAC, UsersPageType, UsersType} from "./usersReduser";
 
 export type MessagesDataType = {
     id: number
@@ -41,6 +42,7 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebarPage: SidebarDataType
+    usersPage: UsersPageType
 }
 
 export type ProfilePagePropsType = {
@@ -52,6 +54,12 @@ export type DialogsPagePropsType = {
     dialogsPage: DialogsPageType
     addMessage: (message: string) => void
     onchangeNewMessageText: (text: string) => void
+}
+export type UsersPropsType = {
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
+    setUsers: (users: Array<UsersType>) => void
+    users: Array<UsersType>
 }
 
 export type DialogsContainerPropsType = {
@@ -68,6 +76,10 @@ export type ActionType =
     | ReturnType<typeof addMessageAC>
     | ReturnType<typeof onChangeNewPostAC>
     | ReturnType<typeof onChangeNewMessageTextAC>
+    | ReturnType<typeof followAC>
+    | ReturnType<typeof unfollowAC>
+    | ReturnType<typeof setUsersAC>
+
 
 export type StoreType = {
     _state: RootStateType
@@ -144,7 +156,25 @@ export let store: StoreType = {
                         name: 'Helga',
                         src: 'https://russia-dropshipping.ru/800/600/https/proprikol.ru/wp-content/uploads/2019/08/krutye-kartinki-dlya-vk-24.jpg'
                     }]
+        },
+        usersPage:{
+            users:[
+                {id: 1,photoUrl:'', followed: true, fullName: 'Mik', status: 'I am boss', location: {city: 'Minsk', country: 'Belarus'}},
+                {
+                    id: 2,
+                    photoUrl:'',
+                    followed: true,
+                    fullName: 'Dmitry',
+                    status: 'I am groot',
+                    location: {city: 'Minsk', country: 'Belarus'}
+                },
+                {id: 3,photoUrl:'', followed: false, fullName: 'Jonn', status: 'I am good', location: {city: 'New-York', country: 'USA'}},
+                {id: 4,photoUrl:'', followed: false, fullName: 'Artem', status: 'I am pet', location: {city: 'Warshaw', country: 'Poland'}},
+
+            ]
         }
+
+
     },
 
     _rerenderEntireTree(state: RootStateType) {
