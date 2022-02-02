@@ -6,14 +6,18 @@ const SET_USERS = 'SET_USERS';
 
 export type UsersType = {
     id: number
-    photoUrl: string
-    followed: boolean
-    fullName: string
-    status: string
-    location: {
-        city: string
-        country: string
+    name: string
+    uniqueUrlName: string
+    photos: {
+        small: string
+        large: string
     }
+    status: string
+    followed: boolean
+    // location: {
+    //     city: string
+    //     country: string
+    // }
 }
 export type UsersPageType = {
     users: Array<UsersType>
@@ -60,6 +64,7 @@ let initialState = {
 export const usersReducer = (state: UsersPageType = initialState, action: ActionType): UsersPageType => {
     switch (action.type) {
         case FOLLOW:
+
             return {
                 ...state,
                 users: state.users.map(item => item.id === action.payload.userId ? {
