@@ -3,7 +3,7 @@ import {addPostAC, onChangeNewPostAC, profileReducer} from "./profileReducer";
 import {addMessageAC, dialogsReducer, onChangeNewMessageTextAC} from "./dialogsReduser";
 import {sidebarReducer} from "./sidebarReducer";
 import {StoreReduxType} from "./redux-store";
-import {followAC, setCurrentPageAC, setUsersAC, unfollowAC, UsersPageType, UsersType} from "./usersReduser";
+import {followAC, setPageAC, setTotalCountAC, setUsersAC, unfollowAC, UsersPageType, UsersType} from "./usersReduser";
 
 export type MessagesDataType = {
     id: number
@@ -58,8 +58,9 @@ export type DialogsPagePropsType = {
 export type UsersPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
-    setUsers: (users: Array<UsersType>, totalCount: number) => void
-    setCurrentPage: (currentPage: number) => void
+    setUsers: (users: Array<UsersType>) => void
+    setTotalUsersCount: (totalCount: number) => void
+    setPage: (numberPage: number) => void
     users: Array<UsersType>
     pageSize: number
     totalUsersCount: number
@@ -84,7 +85,8 @@ export type ActionType =
     | ReturnType<typeof followAC>
     | ReturnType<typeof unfollowAC>
     | ReturnType<typeof setUsersAC>
-    | ReturnType<typeof setCurrentPageAC>
+    | ReturnType<typeof setPageAC>
+    | ReturnType<typeof setTotalCountAC>
 
 
 // export type StoreType = {

@@ -10,8 +10,18 @@ export class UsersClass extends React.Component<UsersPropsType> {
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
-                this.props.setUsers(response.data.items, response.data.totalCount)
+                this.props.setUsers(response.data.items)
+                this.props.setTotalUsersCount(response.data.totalCount)
             })
+    }
+
+    onChangePage = (numberPage: number) => {
+        this.props.setPage(numberPage)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numberPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+            })
+
     }
 
     render() {
@@ -25,11 +35,19 @@ export class UsersClass extends React.Component<UsersPropsType> {
 
         return (
             <div>
-                <div>
-                    {pages.map(item => <span key={item} onClick={() => this.props.setCurrentPage(item)}
-                                             className={this.props.currentPage === item ? s.selectedPage : ''}>-{item}-</span>)}
+                <div className={s.pages}>
+                    {pages.map(item => {
+                        if (item >= this.props.currentPage - 2 && item <= this.props.currentPage + 2) {
+                            return (
+                                <span key={item} onClick={() => {
+                                    this.onChangePage(item)
+                                }} className={this.props.currentPage === item ? s.selectedPage : ''}> {item} </span>
+                            )
+                        } else return undefined
+
+                    })}
                 </div>
-                {this.props.users.map(item => <div key={item.id}>
+                {this.props.users.map(item => <div key={item.id} className={s.users}>
                 <span>
                     <div>
                         <img src={item.photos.small != null ? item.photos.small : userPhoto} className={s.ava}/>

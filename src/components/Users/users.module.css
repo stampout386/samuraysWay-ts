@@ -8,3 +8,14 @@
 .selectedPage {
     font-weight: bold;
 }
+
+.pages {
+    margin: 10px;
+}
+
+.users {
+    margin: 20px;
+    border: 1px solid #2f4f50;
+    border-radius: 10px;
+    padding: 5px;
+}

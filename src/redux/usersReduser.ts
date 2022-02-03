@@ -4,6 +4,7 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const CURRENT_PAGE = 'CURRENT_PAGE';
+const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT'
 
 export type UsersType = {
     id: number
@@ -64,9 +65,9 @@ let initialState = {
         // },
 
     ],
-    pageSize: 5,
+    pageSize: 4,
     totalUsersCount: 0,
-    currentPage: 3
+    currentPage: 1
 }
 
 export const usersReducer = (state: UsersPageType = initialState, action: ActionType): UsersPageType => {
@@ -91,13 +92,17 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
         case SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.payload.users],
-                totalUsersCount: action.payload.totalUsersCount
+                users: [...action.payload.users],
             }
         case CURRENT_PAGE :
             return {
                 ...state, currentPage: action.payload.numberPage
             }
+        case SET_TOTAL_COUNT:
+            return {
+                ...state, totalUsersCount: action.payload.totalCount
+            }
+
         default :
             return state
 
@@ -119,15 +124,24 @@ export const unfollowAC = (userId: number) => {
         }
     } as const
 }
-export const setUsersAC = (users: Array<UsersType>, totalUsersCount: number) => {
+export const setUsersAC = (users: Array<UsersType>) => {
     return {
-        type: SET_USERS, payload: {users, totalUsersCount}
+        type: SET_USERS, payload: {users}
     } as const
 }
-export const setCurrentPageAC = (numberPage: number) => {
+export const setPageAC = (numberPage: number) => {
     return {
-        type: CURRENT_PAGE, payload: {
-            numberPage: numberPage
-        } as const
-    }
+        type: CURRENT_PAGE,
+        payload: {
+            numberPage
+        }
+    } as const
+}
+export const setTotalCountAC = (totalCount: number) => {
+    return {
+        type: SET_TOTAL_COUNT,
+        payload: {
+            totalCount
+        }
+    } as const
 }
