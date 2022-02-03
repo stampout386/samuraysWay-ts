@@ -1,8 +1,9 @@
-import {ActionType, DialogsPageType, MessagesDataType} from "./store";
+import {ActionType} from "./store";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
+const CURRENT_PAGE = 'CURRENT_PAGE';
 
 export type UsersType = {
     id: number
@@ -21,6 +22,10 @@ export type UsersType = {
 }
 export type UsersPageType = {
     users: Array<UsersType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
+
 }
 
 let initialState = {
@@ -58,7 +63,10 @@ let initialState = {
         //     location: {city: 'Warshaw', country: 'Poland'}
         // },
 
-    ]
+    ],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 3
 }
 
 export const usersReducer = (state: UsersPageType = initialState, action: ActionType): UsersPageType => {
@@ -81,8 +89,15 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
                 } : item)
             }
         case SET_USERS:
-            return {...state, users: [...state.users, ...action.payload.users]}
-
+            return {
+                ...state,
+                users: [...state.users, ...action.payload.users],
+                totalUsersCount: action.payload.totalUsersCount
+            }
+        case CURRENT_PAGE :
+            return {
+                ...state, currentPage: action.payload.numberPage
+            }
         default :
             return state
 
@@ -104,9 +119,15 @@ export const unfollowAC = (userId: number) => {
         }
     } as const
 }
-
-export const setUsersAC = (users: Array<UsersType>) => {
+export const setUsersAC = (users: Array<UsersType>, totalUsersCount: number) => {
     return {
-        type: SET_USERS, payload: {users}
+        type: SET_USERS, payload: {users, totalUsersCount}
     } as const
+}
+export const setCurrentPageAC = (numberPage: number) => {
+    return {
+        type: CURRENT_PAGE, payload: {
+            numberPage: numberPage
+        } as const
+    }
 }
