@@ -1,7 +1,40 @@
 import {connect} from "react-redux";
-import {ActionType, RootStateType} from "../../redux/store";
+import {ActionType, RootStateType, UsersPropsType} from "../../redux/store";
 import {followAC, setPageAC, setTotalCountAC, setUsersAC, unfollowAC, UsersType} from "../../redux/usersReduser";
-import {UsersClass} from "./UsersClass";
+
+import React from "react";
+import axios from "axios";
+import {Users} from "./Users";
+
+export class UsersAPIComponent extends React.Component<UsersPropsType> {
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+                this.props.setTotalUsersCount(response.data.totalCount)
+            })
+    }
+
+    onChangePage = (numberPage: number) => {
+        this.props.setPage(numberPage)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${numberPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+            })
+
+    }
+
+    render() {
+        return <Users currentPage={this.props.currentPage}
+                      totalUsersCount={this.props.totalUsersCount}
+                      pageSize={this.props.pageSize}
+                      users={this.props.users}
+                      onChangePage={this.onChangePage}
+                      unfollow={this.props.unfollow}
+                      follow={this.props.follow}
+        />
+    }
+}
 
 let mapStateToProps = (state: RootStateType) => {
     return {
@@ -23,10 +56,10 @@ let mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
         setUsers: (users: Array<UsersType>) => {
             dispatch(setUsersAC(users))
         },
-        setPage: (numberPage:number)=> {
+        setPage: (numberPage: number) => {
             dispatch(setPageAC(numberPage))
         },
-        setTotalUsersCount:( totalCount: number) => {
+        setTotalUsersCount: (totalCount: number) => {
             dispatch(setTotalCountAC(totalCount))
         }
 
@@ -34,4 +67,4 @@ let mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
 
 }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersClass)
+export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent)

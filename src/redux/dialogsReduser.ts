@@ -6,7 +6,11 @@ const CHANGE_NEW_MESSAGE_TEXT = "CHANGE_NEW_MESSAGE_TEXT";
 
 let initialState = {
     dialogsData: [
-        {id: 1, name: 'Mike', src: 'https://www.blast.hk/attachments/68493/'},
+        {
+            id: 1,
+            name: 'Mike',
+            src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0bxCh54WgCUuDt2QoGduhWe_bxLObQ1GW8w&usqp=CAU'
+        },
         {id: 2, name: 'Kate', src: 'https://cspromogame.ru//storage/upload_images/avatars/1299.jpg'},
         {
             id: 3,
@@ -34,7 +38,7 @@ let initialState = {
     newMessageText: ''
 }
 
-export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionType):DialogsPageType => {
+export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionType): DialogsPageType => {
     switch (action.type) {
         case ADD_MESSAGE : {
             let message: MessagesDataType = {
@@ -43,11 +47,11 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
             }
             // state.messagesData.push(message);
             // state.newMessageText = "";
-            return  {...state,newMessageText:'',messagesData:[...state.messagesData,message]}
+            return {...state, newMessageText: '', messagesData: [...state.messagesData, message]}
         }
         case CHANGE_NEW_MESSAGE_TEXT: {
             // state.newMessageText = action.newMessageText;
-            return {...state,newMessageText:action.newMessageText}
+            return {...state, newMessageText: action.newMessageText}
         }
         default : {
             return state
