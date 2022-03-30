@@ -3,7 +3,16 @@ import {addPostAC, onChangeNewPostAC, profileReducer} from "./profileReducer";
 import {addMessageAC, dialogsReducer, onChangeNewMessageTextAC} from "./dialogsReduser";
 import {sidebarReducer} from "./sidebarReducer";
 import {StoreReduxType} from "./redux-store";
-import {followAC, setPageAC, setTotalCountAC, setUsersAC, unfollowAC, UsersPageType, UsersType} from "./usersReduser";
+import {
+    follow,
+    setPage,
+    setTotalUsersCount,
+    setUsers,
+    toogleIsFetching,
+    unfollow,
+    UsersPageType,
+    UsersType
+} from "./usersReduser";
 
 export type MessagesDataType = {
     id: number
@@ -65,6 +74,8 @@ export type UsersPropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    toogleIsFetching: (isFetching: boolean) => void
+    isFetching: boolean
 }
 
 export type DialogsContainerPropsType = {
@@ -82,11 +93,12 @@ export type ActionType =
     | ReturnType<typeof addMessageAC>
     | ReturnType<typeof onChangeNewPostAC>
     | ReturnType<typeof onChangeNewMessageTextAC>
-    | ReturnType<typeof followAC>
-    | ReturnType<typeof unfollowAC>
-    | ReturnType<typeof setUsersAC>
-    | ReturnType<typeof setPageAC>
-    | ReturnType<typeof setTotalCountAC>
+    | ReturnType<typeof follow>
+    | ReturnType<typeof unfollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof toogleIsFetching>
 
 
 // export type StoreType = {
