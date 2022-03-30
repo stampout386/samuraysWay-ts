@@ -3,6 +3,7 @@ import userPhoto
     from "../../assets/images/png-transparent-computer-icons-user-profile-login-user-heroes-sphere-black-thumbnail.png";
 import React from "react";
 import {UsersType} from "../../redux/usersReduser";
+import {NavLink} from "react-router-dom";
 
 type UsersComponentType = {
     currentPage: number
@@ -37,10 +38,12 @@ export const Users = (props: UsersComponentType) => {
 
                 })}
             </div>
-            {props.users.map((item: any) => <div key={item.id} className={s.users}>
+            {props.users.map((item) => <div key={item.id} className={s.users}>
                 <span>
                     <div>
-                        <img src={item.photos.small != null ? item.photos.small : userPhoto} className={s.ava}/>
+                       <NavLink to={'/profile'}> <img
+                           src={item.photos.small != null ? item.photos.small : userPhoto}
+                           className={s.ava}/></NavLink>
                      </div>
                     <div>
                         {item.followed ? <button onClick={() => {

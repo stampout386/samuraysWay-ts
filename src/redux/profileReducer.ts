@@ -1,7 +1,8 @@
-import {ActionType, PostDataType, ProfilePageType} from "./store";
+import {ActionType, PostDataType, ProfilePageType, ProfileType} from "./store";
 
 const ADD_POST = "ADD_POST";
 const CHANGE_NEW_POST_TEXT = "CHANGE_NEW_POST_TEXT";
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 
 let initialState = {
@@ -25,7 +26,8 @@ let initialState = {
             like: 105
 
         }
-    ]
+    ],
+    profile: null
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
@@ -40,6 +42,9 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
         }
         case CHANGE_NEW_POST_TEXT: {
             return {...state, newPostText: action.newPostText}
+        }
+        case SET_USER_PROFILE: {
+            return {...state, profile: action.payload.profile}
         }
         default: {
             return state
@@ -62,4 +67,13 @@ export const onChangeNewPostAC = (newPostText: string) => {
         newPostText: newPostText
     } as const
 
+}
+
+export const setUserProfile = (profile: ProfileType) => {
+    return {
+        type: SET_USER_PROFILE,
+        payload: {
+            profile
+        }
+    } as const
 }

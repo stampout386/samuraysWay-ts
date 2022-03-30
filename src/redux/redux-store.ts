@@ -9,7 +9,7 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebarPage: SidebarDataType
-    usersPage:UsersPageType
+    usersPage: UsersPageType
 }
 
 
@@ -17,11 +17,13 @@ export let reducers = combineReducers({
         profilePage: profileReducer,
         dialogsPage: dialogsReducer,
         sidebarPage: sidebarReducer,
-        usersPage:usersReducer
+        usersPage: usersReducer
     }
 )
 
 
-export type StoreReduxType = Store<EmptyObject & { profilePage: ProfilePageType; dialogsPage: DialogsPageType; sidebarPage: SidebarDataType;usersPage:UsersPageType }, ActionType>
+export type StoreReduxType = Store<EmptyObject & { profilePage: ProfilePageType; dialogsPage: DialogsPageType; sidebarPage: SidebarDataType; usersPage: UsersPageType }, ActionType>
 
 export let store = createStore(reducers)
+//@ts-ignore
+window.store = store

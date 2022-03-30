@@ -3,13 +3,14 @@ import css from './Profile.module.css'
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
+import {ProfileType} from "../../redux/store";
 
 
-export function Profile() {
-
+export function Profile(props: any) {
+    console.log(props)
     return (
         <div className={css.content}>
-            <ProfileInfo/>
+            <ProfileInfo profile={props.profile}/>
             <MyPostsContainer/>
         </div>
     )

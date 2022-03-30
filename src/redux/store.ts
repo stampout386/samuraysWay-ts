@@ -1,5 +1,5 @@
 //  Types
-import {addPostAC, onChangeNewPostAC, profileReducer} from "./profileReducer";
+import {addPostAC, onChangeNewPostAC, profileReducer, setUserProfile} from "./profileReducer";
 import {addMessageAC, dialogsReducer, onChangeNewMessageTextAC} from "./dialogsReduser";
 import {sidebarReducer} from "./sidebarReducer";
 import {StoreReduxType} from "./redux-store";
@@ -33,9 +33,35 @@ export type PostDataType = {
     message: string
     like: number
 }
+
+export type ProfileType = {
+    profile: {
+        "aboutMe": string,
+        "contacts": {
+            "facebook": string,
+            "website": null | string
+            "vk": null | string,
+            "twitter": null | string,
+            "instagram": null | string,
+            "youtube": null | string,
+            "github": null | string,
+            "mainLink": null | string
+        },
+        "lookingForAJob": boolean
+        "lookingForAJobDescription": string | null
+        "fullName": string | null,
+        "userId": number,
+        "photos": {
+            "small": string
+            "large": string
+        }
+    }
+
+}
 export type ProfilePageType = {
     newPostText: string
     postData: Array<PostDataType>
+    profile: ProfileType | null
 }
 export type FriendsDataType = {
     id: number
@@ -99,6 +125,7 @@ export type ActionType =
     | ReturnType<typeof setPage>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toogleIsFetching>
+    | ReturnType<typeof setUserProfile>
 
 
 // export type StoreType = {
