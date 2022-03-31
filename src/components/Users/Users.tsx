@@ -29,10 +29,10 @@ export const Users = (props: UsersComponentType) => {
                 {pages.map(item => {
                     if (item >= props.currentPage - 2 && item <= props.currentPage + 2) {
                         return (
-                            <span key={item} onClick={() => {
+                            <a key={item} onClick={() => {
                                 props.onChangePage(item)
                             }}
-                                  className={props.currentPage === item ? s.selectedPage : ''}> {item} </span>
+                               className={props.currentPage === item ? s.selectedPage : ''}>{item} </a>
                         )
                     } else return undefined
 
