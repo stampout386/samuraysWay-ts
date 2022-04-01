@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {ActionType, RootStateType, UsersPropsType} from "../../redux/store";
+import {UsersPropsType} from "../../redux/store";
 import {
     follow,
     setPage,
@@ -7,13 +7,13 @@ import {
     setUsers,
     toogleIsFetching,
     unfollow,
-    UsersType
 } from "../../redux/usersReduser";
 
 import React from "react";
 import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../../commons/Preloader/Preloader";
+import {RootStateType} from "../../redux/redux-store";
 
 
 export class UsersAPIComponent extends React.Component<UsersPropsType> {

@@ -13,6 +13,7 @@ import {
     UsersPageType,
     UsersType
 } from "./usersReduser";
+import {setUserData} from "./authReducer";
 
 export type MessagesDataType = {
     id: number
@@ -73,12 +74,12 @@ export type SidebarDataType = {
 }
 
 
-export type RootStateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-    sidebarPage: SidebarDataType
-    usersPage: UsersPageType
-}
+// export type RootStateType = {
+//     profilePage: ProfilePageType
+//     dialogsPage: DialogsPageType
+//     sidebarPage: SidebarDataType
+//     usersPage: UsersPageType
+// }
 
 export type ProfilePagePropsType = {
     // profilePage: ProfilePageType
@@ -111,7 +112,7 @@ export type SideBarPropsType = {
     sidebarPage: SidebarDataType
 }
 
-export type ObserverType = (state: RootStateType) => void
+// export type ObserverType = (state: RootStateType) => void
 
 export type ActionType =
 
@@ -126,6 +127,7 @@ export type ActionType =
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toogleIsFetching>
     | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setUserData>
 
 
 // export type StoreType = {

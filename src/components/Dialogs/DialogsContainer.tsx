@@ -2,13 +2,12 @@ import React from "react";
 
 import {
     ActionType,
-    DialogsContainerPropsType, RootStateType,
-
 } from "../../redux/store";
 import {addMessageAC, onChangeNewMessageTextAC} from "../../redux/dialogsReduser";
 import {Dialogs} from "./Dialogs";
 
 import {connect} from "react-redux";
+import {RootStateType} from "../../redux/redux-store";
 
 
 // export function DialogsContainer(props: DialogsContainerPropsType) {
