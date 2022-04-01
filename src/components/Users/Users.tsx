@@ -27,7 +27,7 @@ export const Users = (props: UsersComponentType) => {
         <div>
             <div className={s.pages}>
                 {pages.map(item => {
-                    if (item >= props.currentPage - 2 && item <= props.currentPage + 2) {
+                    if (item >= props.currentPage - 4 && item <= props.currentPage + 4) {
                         return (
                             <a key={item} onClick={() => {
                                 props.onChangePage(item)
@@ -41,7 +41,7 @@ export const Users = (props: UsersComponentType) => {
             {props.users.map((item) => <div key={item.id} className={s.users}>
                 <span>
                     <div>
-                       <NavLink to={'/profile'}> <img
+                       <NavLink to={'/profile/' + item.id}> <img
                            src={item.photos.small != null ? item.photos.small : userPhoto}
                            className={s.ava}/></NavLink>
                      </div>

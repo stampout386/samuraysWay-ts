@@ -15,28 +15,28 @@ export function Navbar(props: SideBarPropsType) {
     return (
         <nav className={css.nav}>
             <div className={css.item}>
-                <NavLink to={'/profile'}
-                         className={({isActive}) => (isActive ? css.active : css.item)}>Profile</NavLink>
+                <NavLink to={'/profile'}  className={css.item}
+                         activeClassName={css.active}>Profile</NavLink>
             </div>
             <div className={css.item}>
-                <NavLink to={'/dialogs'}
-                         className={({isActive}) => (isActive ? css.active : css.item)}>Messages</NavLink>
+                <NavLink to={'/dialogs'}  className={css.item}
+                         activeClassName={css.active}>Messages</NavLink>
             </div>
             <div className={css.item}>
-                <NavLink to={'/news'}
-                         className={({isActive}) => (isActive ? css.active : css.item)}>News</NavLink>
+                <NavLink to={'/news'}  className={css.item}
+                         activeClassName={css.active}>News</NavLink>
             </div>
             <div className={css.item}>
-                <NavLink to={'/music'}
-                         className={({isActive}) => (isActive ? css.active : css.item)}>Music</NavLink>
+                <NavLink to={'/music'}  className={css.item}
+                         activeClassName={css.active}>Music</NavLink>
             </div>
             <div className={css.item}>
-                <NavLink to={'/settings'}
-                         className={({isActive}) => (isActive ? css.active : css.item)}>Settings</NavLink>
+                <NavLink to={'/settings'} className={css.item}
+                         activeClassName={css.active}>Settings</NavLink>
             </div>
             <div className={css.item}>
-                <NavLink to={'/users'}
-                         className={({isActive}) => (isActive ? css.active : css.item)}>Users</NavLink>
+                <NavLink to={'/users'}  className={css.item}
+                         activeClassName={css.active}>Users</NavLink>
             </div>
 
             <div className={css.friends}>
