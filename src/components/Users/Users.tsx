@@ -4,6 +4,7 @@ import userPhoto
 import React from "react";
 import {UsersType} from "../../redux/usersReduser";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 type UsersComponentType = {
     currentPage: number
@@ -21,6 +22,34 @@ export const Users = (props: UsersComponentType) => {
     let pages = []
     for (let i = 1; i <= usersCount; i++) {
         pages.push(i)
+    }
+
+    const unfollowRequest = (id: number) => {
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
+            withCredentials: true,
+            headers: {
+                "API-KEY": 'c5b08a5b-ebd6-4d48-90f0-0ef1c70dffc1'
+            }
+        })
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    props.unfollow(id)
+                }
+            })
+    }
+    const followRequest = (id: number) => {
+        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, {
+            withCredentials: true,
+            headers: {
+                "API-KEY": 'c5b08a5b-ebd6-4d48-90f0-0ef1c70dffc1'
+            }
+        })
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    props.follow(id)
+                }
+            })
+
     }
 
     return (
@@ -46,11 +75,13 @@ export const Users = (props: UsersComponentType) => {
                            className={s.ava}/></NavLink>
                      </div>
                     <div>
-                        {item.followed ? <button onClick={() => {
-                            props.unfollow(item.id)
-                        }}>Unfollow</button> : <button onClick={() => {
-                            props.follow(item.id)
-                        }}>Follow</button>}
+                        {item.followed ?
+                            <button onClick={() => {
+                                unfollowRequest(item.id)
+                            }}>Unfollow</button> :
+                            <button onClick={() => {
+                                followRequest(item.id)
+                            }}>Follow</button>}
                     </div>
                 </span>
                 <span>
