@@ -7,7 +7,7 @@
 
 .active {
     margin-bottom: 10px;
-    color: #2f4f50;
+    color: #032828;
     text-decoration: none;
 }
 
@@ -18,9 +18,13 @@
 
 }
 
-.name {
+.nameDiv {
     margin-top: 15px;
 
+}
+
+.name {
+    text-decoration: none;
 }
 
 .ava {

@@ -4,7 +4,7 @@ import userPhoto
 import React from "react";
 import {UsersType} from "../../redux/usersReduser";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
+import {usersAPI} from "../../api/usersAPI";
 
 type UsersComponentType = {
     currentPage: number
@@ -25,27 +25,17 @@ export const Users = (props: UsersComponentType) => {
     }
 
     const unfollowRequest = (id: number) => {
-        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
-            withCredentials: true,
-            headers: {
-                "API-KEY": 'c5b08a5b-ebd6-4d48-90f0-0ef1c70dffc1'
-            }
-        })
-            .then(response => {
-                if (response.data.resultCode === 0) {
+        usersAPI.userUnfollowRequest(id)
+            .then(data => {
+                if (data.resultCode === 0) {
                     props.unfollow(id)
                 }
             })
     }
     const followRequest = (id: number) => {
-        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, {
-            withCredentials: true,
-            headers: {
-                "API-KEY": 'c5b08a5b-ebd6-4d48-90f0-0ef1c70dffc1'
-            }
-        })
-            .then(response => {
-                if (response.data.resultCode === 0) {
+         usersAPI.userFollowRequest(id)
+            .then(data => {
+                if (data.resultCode === 0) {
                     props.follow(id)
                 }
             })

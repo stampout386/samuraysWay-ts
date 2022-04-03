@@ -13,17 +13,20 @@
     display: grid;
     grid-template-columns: 2fr 10fr;
     padding: 10px;
+    text-decoration: none;
 }
 
 .dialogsItem {
+    text-decoration: none;
 }
 
 .dialog {
     margin-top: 10px;
+    text-decoration: none;
 }
 
 .messages {
-
+    text-decoration: none;
 }
 
 .textArea button {

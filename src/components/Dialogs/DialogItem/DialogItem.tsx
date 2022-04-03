@@ -16,8 +16,8 @@ export function DialogItem(props: DialogItemPropsType) {
                 <img src={props.src} alt=""/>
             </div>
 
-            <div className={s.name}>
-                <NavLink to={`/dialogs/${props.id}`}
+            <div className={s.nameDiv}>
+                <NavLink to={`/dialogs/${props.id}`} className={s.name}
                          activeClassName={s.active}>{props.name}</NavLink>
             </div>
 

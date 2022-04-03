@@ -6,7 +6,6 @@ import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 
 export function Profile(props: any) {
-    console.log(props)
     return (
         <div className={css.content}>
             <ProfileInfo profile={props.profile}/>
