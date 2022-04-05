@@ -5,10 +5,11 @@ import {Message} from "./Message/Message";
 import {
     DialogsPagePropsType,
 } from "../../redux/store";
-import {addMessageAC, onChangeNewMessageTextAC} from "../../redux/dialogsReduser";
-
+import {Redirect} from "react-router-dom";
 
 export function Dialogs(props: DialogsPagePropsType) {
+
+
     let dialogsRenderArray = props.dialogsPage.dialogsData.map(item => {
         return (
 
@@ -29,6 +30,10 @@ export function Dialogs(props: DialogsPagePropsType) {
 
     const onchangeNewMessageText = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.onchangeNewMessageText(e.currentTarget.value)
+    }
+
+    if (props.auth === false) {
+        return <Redirect to={'/login'}/>
     }
 
     return (

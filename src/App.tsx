@@ -26,16 +26,24 @@ function App() {
                            component={ProfileContainer}/>
                     <Route path={'/dialogs'}
                            component={DialogsContainer}/>
+                    <Route path={'/users'} component={UsersContainer}/>
                     <Route path={'/news'} component={News}/>
                     <Route path={'/music'} component={Music}/>
                     <Route path={'/settings'} component={Settings}/>
-                    <Route path={'/users'} component={UsersContainer}/>
+                    <Route path={'/login'} component={Login}/>
+
                 </Switch>
             </div>
 
         </div>
 
     );
+}
+
+export const Login = () => {
+    return (
+        <div>LOGIN</div>
+    )
 }
 
 

@@ -63,6 +63,7 @@ export type ProfilePageType = {
     newPostText: string
     postData: Array<PostDataType>
     profile: ProfileType | null
+
 }
 export type FriendsDataType = {
     id: number
@@ -90,6 +91,7 @@ export type DialogsPagePropsType = {
     dialogsPage: DialogsPageType
     addMessage: (message: string) => void
     onchangeNewMessageText: (text: string) => void
+    auth: boolean
 }
 export type UsersPropsType = {
     follow: (userId: number) => void
@@ -109,6 +111,7 @@ export type UsersPropsType = {
     getChangePageThunkCreator: (page: number, pageSize: number) => void
     unfollowThunkCreator: (id: number) => void
     followThunkCreator: (id: number) => void
+    isAuth: boolean
 }
 
 export type DialogsContainerPropsType = {
