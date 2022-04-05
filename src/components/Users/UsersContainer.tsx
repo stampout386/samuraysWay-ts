@@ -5,7 +5,7 @@ import {
     setPage,
     setTotalUsersCount,
     setUsers,
-    toogleIsFetching,
+    toogleIsFetching, toogleIsFollowingProgress,
     unfollow,
 } from "../../redux/usersReduser";
 
@@ -17,6 +17,7 @@ import {usersAPI} from "../../api/usersAPI";
 
 
 export class UsersAPIComponent extends React.Component<UsersPropsType> {
+
     componentDidMount() {
         this.props.toogleIsFetching(true)
         usersAPI.getUsersRequest(this.props.currentPage, this.props.pageSize)
@@ -49,6 +50,9 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
                    onChangePage={this.onChangePage}
                    unfollow={this.props.unfollow}
                    follow={this.props.follow}
+                   toogleIsFollowingProgress={this.props.toogleIsFollowingProgress}
+                   followIsProgress = {this.props.followIsProgress}
+
             /></>
 
     }
@@ -60,12 +64,13 @@ let mapStateToProps = (state: RootStateType) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followIsProgress:state.usersPage.followingIsProgress
     }
 }
 
 let dispatchToProps = {
-    follow, unfollow, setUsers, setPage, setTotalUsersCount, toogleIsFetching
+    follow, unfollow, setUsers, setPage, setTotalUsersCount, toogleIsFetching, toogleIsFollowingProgress,
 }
 
 export const UsersContainer = connect(mapStateToProps, dispatchToProps)(UsersAPIComponent)

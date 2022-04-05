@@ -6,6 +6,7 @@ const SET_USERS = 'SET_USERS';
 const CURRENT_PAGE = 'CURRENT_PAGE';
 const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT'
 const TOOGLE_IS_FETCHING = 'TOOGLE_IS_FETCHING'
+const TOOGLE_IS_FOLLOWING_PROGRESS = 'TOOGLE_IS_FOLLOWING_PROGRESS'
 
 export type UsersType = {
     id: number
@@ -28,48 +29,16 @@ export type UsersPageType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingIsProgress: Array<number>
 }
 
 let initialState = {
-    users: [
-        // {
-        //     id: 1,
-        //     photoUrl: 'https://www.blast.hk/attachments/68493/',
-        //     followed: true,
-        //     fullName: 'Mik',
-        //     status: 'I am boss',
-        //     location: {city: 'Minsk', country: 'Belarus'}
-        // },
-        // {
-        //     id: 2,
-        //     photoUrl: 'https://russia-dropshipping.ru/800/600/https/proprikol.ru/wp-content/uploads/2019/08/krutye-kartinki-dlya-vk-22.jpg',
-        //     followed: false,
-        //     fullName: 'Dmitry',
-        //     status: 'I am groot',
-        //     location: {city: 'Minsk', country: 'Belarus'}
-        // },
-        // {
-        //     id: 3,
-        //     photoUrl: 'https://www.blast.hk/attachments/68493/',
-        //     followed: true,
-        //     fullName: 'Jonn',
-        //     status: 'I am good',
-        //     location: {city: 'New-York', country: 'USA'}
-        // },
-        // {
-        //     id: 4,
-        //     photoUrl: 'https://www.blast.hk/attachments/68493/',
-        //     followed: false,
-        //     fullName: 'Artem',
-        //     status: 'I am pet',
-        //     location: {city: 'Warshaw', country: 'Poland'}
-        // },
-
-    ],
+    users: [],
     pageSize: 4,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingIsProgress: [],
 
 }
 
@@ -108,6 +77,12 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
         case TOOGLE_IS_FETCHING:
             return {
                 ...state, isFetching: action.payload.isFetching
+            }
+        case TOOGLE_IS_FOLLOWING_PROGRESS:
+            return {
+                ...state, followingIsProgress: action.payload.isFetching
+                    ? [...state.followingIsProgress, action.payload.userId]
+                    : state.followingIsProgress.filter(id => id != action.payload.userId)
             }
 
         default :
@@ -158,6 +133,15 @@ export const toogleIsFetching = (isFetching: boolean) => {
         type: TOOGLE_IS_FETCHING,
         payload: {
             isFetching
+        }
+    } as const
+}
+export const toogleIsFollowingProgress = (isFetching: boolean, userId: number) => {
+    return {
+        type: TOOGLE_IS_FOLLOWING_PROGRESS,
+        payload: {
+            isFetching, userId
+
         }
     } as const
 }

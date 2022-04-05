@@ -8,7 +8,7 @@ import {
     setPage,
     setTotalUsersCount,
     setUsers,
-    toogleIsFetching,
+    toogleIsFetching, toogleIsFollowingProgress,
     unfollow,
     UsersPageType,
     UsersType
@@ -103,6 +103,8 @@ export type UsersPropsType = {
     currentPage: number
     toogleIsFetching: (isFetching: boolean) => void
     isFetching: boolean
+    toogleIsFollowingProgress: (isFetching: boolean, userId: number) => void
+    followIsProgress: Array<number>
 }
 
 export type DialogsContainerPropsType = {
@@ -128,6 +130,7 @@ export type ActionType =
     | ReturnType<typeof toogleIsFetching>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setUserData>
+    | ReturnType<typeof toogleIsFollowingProgress>
 
 
 // export type StoreType = {

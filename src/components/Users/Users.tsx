@@ -14,6 +14,8 @@ type UsersComponentType = {
     totalUsersCount: number
     onChangePage: (numberPage: number) => void
     users: Array<UsersType>
+    toogleIsFollowingProgress: (isFetching: boolean, userId: number) => void
+    followIsProgress: Array<number>
 }
 
 export const Users = (props: UsersComponentType) => {
@@ -25,18 +27,22 @@ export const Users = (props: UsersComponentType) => {
     }
 
     const unfollowRequest = (id: number) => {
+        props.toogleIsFollowingProgress(true, id)
         usersAPI.userUnfollowRequest(id)
             .then(data => {
                 if (data.resultCode === 0) {
                     props.unfollow(id)
+                    props.toogleIsFollowingProgress(false, id)
                 }
             })
     }
     const followRequest = (id: number) => {
-         usersAPI.userFollowRequest(id)
+        props.toogleIsFollowingProgress(true, id)
+        usersAPI.userFollowRequest(id)
             .then(data => {
                 if (data.resultCode === 0) {
                     props.follow(id)
+                    props.toogleIsFollowingProgress(false, id)
                 }
             })
 
@@ -66,10 +72,10 @@ export const Users = (props: UsersComponentType) => {
                      </div>
                     <div>
                         {item.followed ?
-                            <button onClick={() => {
+                            <button disabled={props.followIsProgress.some(id => id === item.id )} onClick={() => {
                                 unfollowRequest(item.id)
                             }}>Unfollow</button> :
-                            <button onClick={() => {
+                            <button disabled={props.followIsProgress.some(id => id === item.id )} onClick={() => {
                                 followRequest(item.id)
                             }}>Follow</button>}
                     </div>
