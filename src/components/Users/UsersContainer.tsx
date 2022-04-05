@@ -1,19 +1,14 @@
 import {connect} from "react-redux";
 import {UsersPropsType} from "../../redux/store";
 import {
-    follow, getChangePageThunkCreator, getUsersThunkCreator,
-    setPage,
-    setTotalUsersCount,
-    setUsers,
-    toogleIsFetching, toogleIsFollowingProgress,
-    unfollow,
+    followThunkCreator, getChangePageThunkCreator, getUsersThunkCreator,
+    unfollowThunkCreator,
 } from "../../redux/usersReduser";
 
 import React from "react";
 import {Users} from "./Users";
 import {Preloader} from "../../commons/Preloader/Preloader";
 import {RootStateType} from "../../redux/redux-store";
-import {usersAPI} from "../../api/usersAPI";
 
 
 export class UsersAPIComponent extends React.Component<UsersPropsType> {
@@ -35,10 +30,9 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
                    pageSize={this.props.pageSize}
                    users={this.props.users}
                    onChangePage={this.onChangePage}
-                   unfollow={this.props.unfollow}
-                   follow={this.props.follow}
-                   toogleIsFollowingProgress={this.props.toogleIsFollowingProgress}
                    followIsProgress={this.props.followIsProgress}
+                   unfollowThunkCreator={this.props.unfollowThunkCreator}
+                   followThunkCreator={this.props.followThunkCreator}
 
             /></>
 
@@ -57,9 +51,7 @@ let mapStateToProps = (state: RootStateType) => {
 }
 
 let dispatchToProps = {
-    follow, unfollow, setUsers,
-    setPage, setTotalUsersCount, toogleIsFetching,
-    toogleIsFollowingProgress, getUsersThunkCreator, getChangePageThunkCreator
+    getUsersThunkCreator, getChangePageThunkCreator, unfollowThunkCreator, followThunkCreator
 }
 
 export const UsersContainer = connect(mapStateToProps, dispatchToProps)(UsersAPIComponent)

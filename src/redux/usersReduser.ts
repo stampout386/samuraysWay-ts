@@ -169,3 +169,27 @@ export const getChangePageThunkCreator = (numberPage: number, pageSize: number) 
             dispatch(setUsers(data.items))
         })
 }
+
+export const unfollowThunkCreator = (id: number) => (dispatch: Dispatch) => {
+    dispatch(toogleIsFollowingProgress(true, id))
+
+    usersAPI.userUnfollowRequest(id)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(unfollow(id))
+                dispatch(toogleIsFollowingProgress(false, id))
+
+            }
+        })
+}
+
+export const followThunkCreator = (id: number) => (dispatch: Dispatch) => {
+    dispatch(toogleIsFollowingProgress(true, id))
+    usersAPI.userFollowRequest(id)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(follow(id))
+                dispatch(toogleIsFollowingProgress(false, id))
+            }
+        })
+}
