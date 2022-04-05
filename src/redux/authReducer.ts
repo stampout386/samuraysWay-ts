@@ -1,4 +1,6 @@
 import {ActionType} from "./store";
+import {Dispatch} from "redux";
+import {headerAPI} from "../api/usersAPI";
 
 const SET_USER_DATA = "SET_USER_DATA";
 
@@ -19,6 +21,7 @@ export const authReducer = (state: any = inicialState, action: ActionType): any 
             return state
     }
 }
+//action
 
 export const setUserData = (userId: number, email: string, login: string) => {
     return {
@@ -27,4 +30,15 @@ export const setUserData = (userId: number, email: string, login: string) => {
             userId, email, login
         }
     } as const
+}
+//thunk
+
+export const getAuthLoginThunkCreator = () => (dispatch: Dispatch) => {
+    headerAPI.getAuthLoginRequest()
+        .then(data => {
+            if (data.resultCode === 0) {
+                let {id, login, email} = data.data
+                dispatch(setUserData(id, login, email))
+            }
+        })
 }

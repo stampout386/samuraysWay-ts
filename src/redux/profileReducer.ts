@@ -1,4 +1,6 @@
 import {ActionType, PostDataType, ProfilePageType, ProfileType} from "./store";
+import {Dispatch} from "redux";
+import {profileAPI} from "../api/usersAPI";
 
 const ADD_POST = "ADD_POST";
 const CHANGE_NEW_POST_TEXT = "CHANGE_NEW_POST_TEXT";
@@ -76,4 +78,15 @@ export const setUserProfile = (profile: ProfileType) => {
             profile
         }
     } as const
+}
+
+
+export const getProfileThunkCreator = (userId: number) => (dispatch: Dispatch) => {
+    if (!userId) {
+        userId = 2;
+    }
+    profileAPI.getProfileRequest(userId)
+        .then((data) => {
+            dispatch(setUserProfile(data))
+        })
 }
