@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {UsersPropsType} from "../../redux/store";
 import {
-    follow,
+    follow, getChangePageThunkCreator, getUsersThunkCreator,
     setPage,
     setTotalUsersCount,
     setUsers,
@@ -19,24 +19,11 @@ import {usersAPI} from "../../api/usersAPI";
 export class UsersAPIComponent extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.toogleIsFetching(true)
-        usersAPI.getUsersRequest(this.props.currentPage, this.props.pageSize)
-            .then(data => {
-                this.props.setUsers(data.items)
-                this.props.setTotalUsersCount(data.totalCount)
-                this.props.toogleIsFetching(false)
-            })
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
     }
 
     onChangePage = (numberPage: number) => {
-        this.props.toogleIsFetching(true)
-        this.props.setPage(numberPage)
-        usersAPI.onChangePageUsersRequest(numberPage, this.props.pageSize)
-            .then(data => {
-                this.props.toogleIsFetching(false)
-                this.props.setUsers(data.items)
-            })
-
+        this.props.getChangePageThunkCreator(numberPage, this.props.pageSize)
     }
 
     render() {
@@ -51,7 +38,7 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
                    unfollow={this.props.unfollow}
                    follow={this.props.follow}
                    toogleIsFollowingProgress={this.props.toogleIsFollowingProgress}
-                   followIsProgress = {this.props.followIsProgress}
+                   followIsProgress={this.props.followIsProgress}
 
             /></>
 
@@ -65,12 +52,14 @@ let mapStateToProps = (state: RootStateType) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        followIsProgress:state.usersPage.followingIsProgress
+        followIsProgress: state.usersPage.followingIsProgress
     }
 }
 
 let dispatchToProps = {
-    follow, unfollow, setUsers, setPage, setTotalUsersCount, toogleIsFetching, toogleIsFollowingProgress,
+    follow, unfollow, setUsers,
+    setPage, setTotalUsersCount, toogleIsFetching,
+    toogleIsFollowingProgress, getUsersThunkCreator, getChangePageThunkCreator
 }
 
 export const UsersContainer = connect(mapStateToProps, dispatchToProps)(UsersAPIComponent)

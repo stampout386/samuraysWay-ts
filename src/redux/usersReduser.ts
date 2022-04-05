@@ -1,4 +1,6 @@
 import {ActionType} from "./store";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/usersAPI";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -91,7 +93,7 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
     }
 }
 
-
+// action
 export const follow = (userId: number) => {
     return {
         type: FOLLOW, payload: {
@@ -127,7 +129,6 @@ export const setTotalUsersCount = (totalCount: number) => {
         }
     } as const
 }
-
 export const toogleIsFetching = (isFetching: boolean) => {
     return {
         type: TOOGLE_IS_FETCHING,
@@ -144,4 +145,27 @@ export const toogleIsFollowingProgress = (isFetching: boolean, userId: number) =
 
         }
     } as const
+}
+
+
+//thunk
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+    dispatch(toogleIsFetching(true))
+    usersAPI.getUsersRequest(currentPage, pageSize)
+        .then(data => {
+            dispatch(setUsers(data.items))
+            dispatch(setTotalUsersCount(data.totalCount))
+            dispatch(toogleIsFetching(false))
+
+        })
+}
+export const getChangePageThunkCreator = (numberPage: number, pageSize: number) => (dispatch: Dispatch) => {
+    dispatch(toogleIsFetching(true))
+    dispatch(setPage(numberPage))
+
+    usersAPI.onChangePageUsersRequest(numberPage, pageSize)
+        .then(data => {
+            dispatch(toogleIsFetching(false))
+            dispatch(setUsers(data.items))
+        })
 }

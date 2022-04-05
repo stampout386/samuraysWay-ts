@@ -4,7 +4,7 @@ import {addMessageAC, dialogsReducer, onChangeNewMessageTextAC} from "./dialogsR
 import {sidebarReducer} from "./sidebarReducer";
 import {StoreReduxType} from "./redux-store";
 import {
-    follow,
+    follow, getChangePageThunkCreator,
     setPage,
     setTotalUsersCount,
     setUsers,
@@ -105,6 +105,8 @@ export type UsersPropsType = {
     isFetching: boolean
     toogleIsFollowingProgress: (isFetching: boolean, userId: number) => void
     followIsProgress: Array<number>
+    getUsersThunkCreator: (currentPage: number, pageSize: number) => void
+    getChangePageThunkCreator: (page: number, pageSize: number) => void
 }
 
 export type DialogsContainerPropsType = {
