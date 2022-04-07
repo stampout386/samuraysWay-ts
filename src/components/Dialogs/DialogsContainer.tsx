@@ -8,34 +8,12 @@ import {Dialogs} from "./Dialogs";
 
 import {connect} from "react-redux";
 import {RootStateType} from "../../redux/redux-store";
-
-
-// export function DialogsContainer(props: DialogsContainerPropsType) {
-//
-//     const addMessage = () => {
-//         props.store.dispatch(addMessageAC(props.store.getState().dialogsPage.newMessageText))
-//
-//     }
-//
-//     const onchangeNewMessageText = (message: string) => {
-//         props.store.dispatch(onChangeNewMessageTextAC(message))
-//     }
-//
-//     return (
-//         <div>
-//             <Dialogs dialogsPage={props.store.getState().dialogsPage} addMessage={addMessage}
-//                      onchangeNewMessageText={onchangeNewMessageText}/>
-//         </div>
-//
-//
-//     )
-// }
+import {withAuthRedirect} from "../../hoc/withAuthREdirect";
 
 
 let mapStateToProps = (state: RootStateType) => {
     return {
         dialogsPage: state.dialogsPage,
-        auth: state.auth.isAuth
     }
 }
 
@@ -49,5 +27,6 @@ let mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
         }
     }
 }
+let WithRedirectDialogsComponent = withAuthRedirect(Dialogs)
 
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(WithRedirectDialogsComponent);

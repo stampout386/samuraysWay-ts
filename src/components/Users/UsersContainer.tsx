@@ -9,7 +9,7 @@ import React from "react";
 import {Users} from "./Users";
 import {Preloader} from "../../commons/Preloader/Preloader";
 import {RootStateType} from "../../redux/redux-store";
-import {Redirect} from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthREdirect";
 
 
 export class UsersAPIComponent extends React.Component<UsersPropsType> {
@@ -23,7 +23,6 @@ export class UsersAPIComponent extends React.Component<UsersPropsType> {
     }
 
     render() {
-        if(this.props.isAuth === false) return <Redirect to={'/login'}/>
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users currentPage={this.props.currentPage}
@@ -48,7 +47,6 @@ let mapStateToProps = (state: RootStateType) => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         followIsProgress: state.usersPage.followingIsProgress,
-        isAuth: state.auth.isAuth
     }
 }
 
@@ -56,4 +54,6 @@ let dispatchToProps = {
     getUsersThunkCreator, getChangePageThunkCreator, unfollowThunkCreator, followThunkCreator
 }
 
-export const UsersContainer = connect(mapStateToProps, dispatchToProps)(UsersAPIComponent)
+let WithRedirectUsersComponent = withAuthRedirect(UsersAPIComponent)
+
+export const UsersContainer = connect(mapStateToProps, dispatchToProps)(WithRedirectUsersComponent)

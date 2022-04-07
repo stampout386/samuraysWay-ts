@@ -32,9 +32,6 @@ export function Dialogs(props: DialogsPagePropsType) {
         props.onchangeNewMessageText(e.currentTarget.value)
     }
 
-    if (props.auth === false) {
-        return <Redirect to={'/login'}/>
-    }
 
     return (
         <div className={s.dialogs}>
