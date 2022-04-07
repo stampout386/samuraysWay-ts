@@ -10,6 +10,7 @@ import {Users} from "./Users";
 import {Preloader} from "../../commons/Preloader/Preloader";
 import {RootStateType} from "../../redux/redux-store";
 import {withAuthRedirect} from "../../hoc/withAuthREdirect";
+import {compose} from "redux";
 
 
 export class UsersAPIComponent extends React.Component<UsersPropsType> {
@@ -54,6 +55,4 @@ let dispatchToProps = {
     getUsersThunkCreator, getChangePageThunkCreator, unfollowThunkCreator, followThunkCreator
 }
 
-let WithRedirectUsersComponent = withAuthRedirect(UsersAPIComponent)
-
-export const UsersContainer = connect(mapStateToProps, dispatchToProps)(WithRedirectUsersComponent)
+export const UsersContainer = compose<React.ComponentType>(connect(mapStateToProps, dispatchToProps), withAuthRedirect)(UsersAPIComponent)

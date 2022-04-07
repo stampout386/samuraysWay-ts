@@ -5,7 +5,6 @@ import {Message} from "./Message/Message";
 import {
     DialogsPagePropsType,
 } from "../../redux/store";
-import {Redirect} from "react-router-dom";
 
 export function Dialogs(props: DialogsPagePropsType) {
 
