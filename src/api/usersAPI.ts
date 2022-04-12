@@ -38,6 +38,20 @@ export const profileAPI = {
     getProfileRequest(userId: number) {
         return instance.get(`profile/${userId}`)
             .then(response => response.data)
+    },
+    getStatus(userId: number) {
+        return instance.get(`profile/status/${userId}`)
+            .then(response => response.data)
+    },
+    updateStatus(status: string) {
+        if (status.length < 300) {
+            return instance.put(`profile/status`, {status})
+                .then(response => response.data)
+
+        } else {
+            alert('Maximum length of 300 characters')
+        }
+
     }
 
 }

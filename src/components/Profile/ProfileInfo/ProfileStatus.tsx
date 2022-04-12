@@ -16,8 +16,8 @@ export function ProfileStatus(props: { status: string }) {
     return (
         <div>
             {
-                !editMopde ?
-                    <span onDoubleClick={inDblClick}>{props.status}</span>
+                !editMopde
+                    ? <span onDoubleClick={inDblClick}>{props.status}</span>
                     : <input autoFocus={true} onBlur={onBlurClick} value={props.status}/>
             }
         </div>

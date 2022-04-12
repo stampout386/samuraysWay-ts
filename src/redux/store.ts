@@ -1,5 +1,5 @@
 //  Types
-import {addPostAC, onChangeNewPostAC, profileReducer, setUserProfile} from "./profileReducer";
+import {addPostAC, onChangeNewPostAC, profileReducer, setUserProfile, setUserStatus} from "./profileReducer";
 import {addMessageAC, dialogsReducer, onChangeNewMessageTextAC} from "./dialogsReduser";
 import {sidebarReducer} from "./sidebarReducer";
 import {StoreReduxType} from "./redux-store";
@@ -63,6 +63,7 @@ export type ProfilePageType = {
     newPostText: string
     postData: Array<PostDataType>
     profile: ProfileType | null
+    status: any
 
 }
 export type FriendsDataType = {
@@ -138,6 +139,7 @@ export type ActionType =
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setUserData>
     | ReturnType<typeof toogleIsFollowingProgress>
+    | ReturnType<typeof setUserStatus>
 
 
 // export type StoreType = {

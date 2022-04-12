@@ -5,6 +5,7 @@ import {profileAPI} from "../api/usersAPI";
 const ADD_POST = "ADD_POST";
 const CHANGE_NEW_POST_TEXT = "CHANGE_NEW_POST_TEXT";
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
+const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS'
 
 
 let initialState = {
@@ -29,7 +30,8 @@ let initialState = {
 
         }
     ],
-    profile: null
+    profile: null,
+    status: '',
 }
 
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionType): ProfilePageType => {
@@ -47,6 +49,9 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
         }
         case SET_USER_PROFILE: {
             return {...state, profile: action.payload.profile}
+        }
+        case SET_PROFILE_STATUS: {
+            return {...state, status: action.payload.status}
         }
         default: {
             return state
@@ -79,14 +84,30 @@ export const setUserProfile = (profile: ProfileType) => {
         }
     } as const
 }
+export const setUserStatus = (status: number) => {
+    return {
+        type: SET_PROFILE_STATUS,
+        payload: {
+            status
+        }
+
+    } as const
+}
 
 
 export const getProfileThunkCreator = (userId: number) => (dispatch: Dispatch) => {
     if (!userId) {
-        userId = 2;
+        userId = 22088;
     }
     profileAPI.getProfileRequest(userId)
         .then((data) => {
             dispatch(setUserProfile(data))
+        })
+}
+
+export const getStatusTC = (userId: number) => (dispath: Dispatch) => {
+    profileAPI.getStatus(userId)
+        .then((data) => {
+            dispath(setUserStatus(data))
         })
 }
