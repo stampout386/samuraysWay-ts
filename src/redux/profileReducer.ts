@@ -4,8 +4,9 @@ import {profileAPI} from "../api/usersAPI";
 
 const ADD_POST = "ADD_POST";
 const CHANGE_NEW_POST_TEXT = "CHANGE_NEW_POST_TEXT";
-const SET_USER_PROFILE = 'SET_USER_PROFILE'
-const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS'
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_PROFILE_STATUS = 'SET_PROFILE_STATUS';
+const UPDATE_USER_STATUS = 'UPDATE_USER_STATUS'
 
 
 let initialState = {
@@ -84,7 +85,7 @@ export const setUserProfile = (profile: ProfileType) => {
         }
     } as const
 }
-export const setUserStatus = (status: number) => {
+export const setUserStatus = (status: string) => {
     return {
         type: SET_PROFILE_STATUS,
         payload: {
@@ -94,20 +95,28 @@ export const setUserStatus = (status: number) => {
     } as const
 }
 
-
 export const getProfileThunkCreator = (userId: number) => (dispatch: Dispatch) => {
-    if (!userId) {
-        userId = 22088;
-    }
+
     profileAPI.getProfileRequest(userId)
         .then((data) => {
             dispatch(setUserProfile(data))
         })
 }
 
-export const getStatusTC = (userId: number) => (dispath: Dispatch) => {
+export const getUserStatusTC = (userId: number) => (dispath: Dispatch) => {
     profileAPI.getStatus(userId)
         .then((data) => {
             dispath(setUserStatus(data))
+        })
+}
+
+export const updateStatusTC = (status: string) => (dispatch: Dispatch) => {
+    profileAPI.updateStatus(status)
+        .then(data => {
+
+            if (data.resultCode === 0) {
+                dispatch(setUserStatus(status))
+            }
+
         })
 }

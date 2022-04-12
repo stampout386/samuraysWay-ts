@@ -44,14 +44,8 @@ export const profileAPI = {
             .then(response => response.data)
     },
     updateStatus(status: string) {
-        if (status.length < 300) {
-            return instance.put(`profile/status`, {status})
-                .then(response => response.data)
-
-        } else {
-            alert('Maximum length of 300 characters')
-        }
-
+        return instance.put(`profile/status`, {status})
+            .then(response => response.data)
     }
 
 }

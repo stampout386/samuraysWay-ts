@@ -5,7 +5,6 @@ import {ProfileType} from "../../../redux/store";
 import {ProfileStatus} from "./ProfileStatus";
 
 
-
 export function ProfileInfo(props: ProfileType) {
 
     return (
@@ -16,7 +15,7 @@ export function ProfileInfo(props: ProfileType) {
                 {/*    alt=""/>*/}
             </div>
             <div className={s.descriptionBlock}>
-                 <ProfileStatus status={'Hey hou'}/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 {
                     !props.profile ? <Preloader/> :
                         <div>

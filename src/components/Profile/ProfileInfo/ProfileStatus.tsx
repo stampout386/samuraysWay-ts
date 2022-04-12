@@ -1,9 +1,15 @@
 import {useState} from "react";
+import {stat} from "fs";
+
+type ProfileStatusType = {
+    status: string, updateStatus: (status: string) => void
+}
 
 
-export function ProfileStatus(props: { status: string }) {
+export function ProfileStatus(props: ProfileStatusType) {
 
-    const [editMopde, setEditMode] = useState<boolean>(false)
+    const [editMode, setEditMode] = useState<boolean>(false)
+    const [status, setStatus] = useState<string>(props.status)
 
     const inDblClick = () => {
         setEditMode(true)
@@ -11,14 +17,18 @@ export function ProfileStatus(props: { status: string }) {
 
     const onBlurClick = () => {
         setEditMode(false)
+        props.updateStatus(status)
+    }
+    const onChangeClick = (e: any) => {
+        setStatus(e.currentTarget.value)
     }
 
     return (
         <div>
             {
-                !editMopde
-                    ? <span onDoubleClick={inDblClick}>{props.status}</span>
-                    : <input autoFocus={true} onBlur={onBlurClick} value={props.status}/>
+                !editMode
+                    ? <span onDoubleClick={inDblClick}>{props.status || '-----'}</span>
+                    : <input autoFocus={true} onBlur={onBlurClick} value={status} onChange={onChangeClick}/>
             }
         </div>
     )

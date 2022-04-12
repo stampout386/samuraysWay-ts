@@ -1,16 +1,14 @@
 //  Types
-import {addPostAC, onChangeNewPostAC, profileReducer, setUserProfile, setUserStatus} from "./profileReducer";
-import {addMessageAC, dialogsReducer, onChangeNewMessageTextAC} from "./dialogsReduser";
-import {sidebarReducer} from "./sidebarReducer";
+import {addPostAC, onChangeNewPostAC, setUserProfile, setUserStatus} from "./profileReducer";
+import {addMessageAC, onChangeNewMessageTextAC} from "./dialogsReduser";
 import {StoreReduxType} from "./redux-store";
 import {
-    follow, followThunkCreator, getChangePageThunkCreator,
+    follow,
     setPage,
     setTotalUsersCount,
     setUsers,
     toogleIsFetching, toogleIsFollowingProgress,
     unfollow,
-    UsersPageType,
     UsersType
 } from "./usersReduser";
 import {setUserData} from "./authReducer";
@@ -57,6 +55,9 @@ export type ProfileType = {
             "large": string
         }
     }
+    status: string
+    updateStatus: (status: string) => void
+
 
 }
 export type ProfilePageType = {
@@ -76,16 +77,8 @@ export type SidebarDataType = {
 }
 
 
-// export type RootStateType = {
-//     profilePage: ProfilePageType
-//     dialogsPage: DialogsPageType
-//     sidebarPage: SidebarDataType
-//     usersPage: UsersPageType
-// }
-
 export type ProfilePagePropsType = {
-    // profilePage: ProfilePageType
-    // dispatch: (action: ActionType) => void
+
     store: StoreReduxType
 }
 export type DialogsPagePropsType = {
