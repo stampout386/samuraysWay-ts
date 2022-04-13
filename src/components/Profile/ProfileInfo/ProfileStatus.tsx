@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {stat} from "fs";
 
 type ProfileStatusType = {
@@ -10,6 +10,11 @@ export function ProfileStatus(props: ProfileStatusType) {
 
     const [editMode, setEditMode] = useState<boolean>(false)
     const [status, setStatus] = useState<string>(props.status)
+
+    useEffect(() => {
+        debugger
+        setStatus(props.status)
+    }, [props.status])
 
     const inDblClick = () => {
         setEditMode(true)
