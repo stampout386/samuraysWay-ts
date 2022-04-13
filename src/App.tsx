@@ -11,6 +11,7 @@ import {NavbarContainer} from "./components/Navbar/NavbarContainer";
 import {UsersContainer} from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import {Login} from "./components/Login/Login";
 
 
 function App() {
@@ -40,11 +41,7 @@ function App() {
     );
 }
 
-export const Login = () => {
-    return (
-        <div>LOGIN</div>
-    )
-}
+
 
 
 export default App;

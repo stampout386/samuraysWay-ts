@@ -6,6 +6,7 @@ import {ActionType, DialogsPageType, ProfilePageType, SidebarDataType} from "./s
 import {UsersPageType, usersReducer} from "./usersReduser";
 import {authReducer} from "./authReducer";
 import thunk from "redux-thunk"
+import {reducer as formReducer} from 'redux-form'
 
 export type RootStateType = {
     profilePage: ProfilePageType
@@ -13,6 +14,7 @@ export type RootStateType = {
     sidebarPage: SidebarDataType
     usersPage: UsersPageType
     auth: any
+    form: any
 }
 
 
@@ -21,7 +23,8 @@ export let reducers = combineReducers({
         dialogsPage: dialogsReducer,
         sidebarPage: sidebarReducer,
         usersPage: usersReducer,
-        auth: authReducer
+        auth: authReducer,
+        form: formReducer
     }
 )
 
