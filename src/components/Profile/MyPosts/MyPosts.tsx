@@ -6,9 +6,7 @@ import {PostDataType} from "../../../redux/store";
 import {Field, reduxForm} from "redux-form";
 
 type MyPostsType = {
-    newPostText: string
     postData: Array<PostDataType>,
-    changeNewPostTextCallBack: (text: string) => void
     addPost: (newPostText: string) => void
 }
 
