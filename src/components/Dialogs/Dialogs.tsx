@@ -5,6 +5,7 @@ import {Message} from "./Message/Message";
 import {
     DialogsPagePropsType,
 } from "../../redux/store";
+import {reduxForm, Field} from "redux-form";
 
 export function Dialogs(props: DialogsPagePropsType) {
 
@@ -23,12 +24,8 @@ export function Dialogs(props: DialogsPagePropsType) {
     })
 
 
-    const addMessage = () => {
-        props.addMessage(props.dialogsPage.newMessageText)
-    }
-
-    const onchangeNewMessageText = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.onchangeNewMessageText(e.currentTarget.value)
+    const addMessage = (value: any) => {
+        props.addMessage(value.newMessagesBody)
     }
 
 
@@ -41,13 +38,20 @@ export function Dialogs(props: DialogsPagePropsType) {
                 {messagesRenderArray}
             </div>
             <div className={s.textArea}>
-                    <textarea value={props.dialogsPage.newMessageText}
-                              onChange={onchangeNewMessageText}
-                              placeholder={'Enter your message'}>
-
-                    </textarea>
-                <button onClick={addMessage}>Add message</button>
+                <AddMessageReduxForm onSubmit={addMessage}/>
             </div>
 
         </div>)
 }
+
+
+const AddMessageForm = (props: any) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field component={'textarea'} name={'newMessagesBody'} placeholder={'Enter your message'}/>
+            <button>Add message</button>
+        </form>
+    )
+}
+
+export const AddMessageReduxForm = reduxForm({form: 'addMessage'})(AddMessageForm);

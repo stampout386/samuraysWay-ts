@@ -3,7 +3,6 @@ import css from './Profile.module.css'
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
-import {updateStatusTC} from "../../redux/profileReducer";
 
 
 export function Profile(props: any) {

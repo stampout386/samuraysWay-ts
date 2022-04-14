@@ -1,6 +1,6 @@
 //  Types
 import {addPostAC, onChangeNewPostAC, setUserProfile, setUserStatus} from "./profileReducer";
-import {addMessageAC, onChangeNewMessageTextAC} from "./dialogsReduser";
+import {addMessageAC} from "./dialogsReduser";
 import {StoreReduxType} from "./redux-store";
 import {
     follow,
@@ -25,7 +25,6 @@ export type DialogsDataType = {
 export type DialogsPageType = {
     dialogsData: Array<DialogsDataType>
     messagesData: Array<MessagesDataType>
-    newMessageText: string
 }
 export type PostDataType = {
     id: number
@@ -122,7 +121,6 @@ export type ActionType =
     ReturnType<typeof addPostAC>
     | ReturnType<typeof addMessageAC>
     | ReturnType<typeof onChangeNewPostAC>
-    | ReturnType<typeof onChangeNewMessageTextAC>
     | ReturnType<typeof follow>
     | ReturnType<typeof unfollow>
     | ReturnType<typeof setUsers>

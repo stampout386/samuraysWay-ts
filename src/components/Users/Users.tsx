@@ -4,7 +4,6 @@ import userPhoto
 import React from "react";
 import {UsersType} from "../../redux/usersReduser";
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../api/usersAPI";
 
 type UsersComponentType = {
     currentPage: number

@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import {stat} from "fs";
 
 type ProfileStatusType = {
     status: string, updateStatus: (status: string) => void
@@ -12,14 +11,12 @@ export function ProfileStatus(props: ProfileStatusType) {
     const [status, setStatus] = useState<string>(props.status)
 
     useEffect(() => {
-        debugger
         setStatus(props.status)
     }, [props.status])
 
     const inDblClick = () => {
         setEditMode(true)
     }
-
     const onBlurClick = () => {
         setEditMode(false)
         props.updateStatus(status)

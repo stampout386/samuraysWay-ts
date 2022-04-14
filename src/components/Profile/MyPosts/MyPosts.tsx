@@ -1,8 +1,9 @@
 import s from "./MyPosts.module.css";
-import React, {ChangeEvent} from "react";
+import React from "react";
 import {Post} from "./Post/Post";
-import {ActionType, PostDataType} from "../../../redux/store";
-import {addPostAC, onChangeNewPostAC} from "../../../redux/profileReducer";
+import {PostDataType} from "../../../redux/store";
+
+import {Field, reduxForm} from "redux-form";
 
 type MyPostsType = {
     newPostText: string
@@ -13,6 +14,7 @@ type MyPostsType = {
 
 
 export function MyPosts(props: MyPostsType) {
+
     let postRenderArray = props.postData.map(item => {
         return (
             <Post key={item.id} id={item.id} message={item.message} like={item.like}/>
@@ -20,24 +22,16 @@ export function MyPosts(props: MyPostsType) {
     })
 
 
-    const addPost = () => {
-        props.addPost(props.newPostText);
+    const addPost = (postBody: any) => {
+        props.addPost(postBody.profilePostBody);
     }
 
-    const onChangeNewPostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.changeNewPostTextCallBack(e.currentTarget.value)
-    }
 
     return (
         <div>
             <h3>My posts</h3>
             <div className={s.postBlock}>
-                <div>
-                    <textarea value={props.newPostText} onChange={onChangeNewPostHandler}></textarea>
-                </div>
-                <div>
-                    <button onClick={addPost}>Add Post</button>
-                </div>
+                <ProfilePostReduxForm onSubmit={addPost}/>
             </div>
             <div className={s.posts}>
                 {postRenderArray}
@@ -45,3 +39,18 @@ export function MyPosts(props: MyPostsType) {
         </div>
     )
 }
+
+export const ProfilePostForm = (props: any) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field component={'textarea'} name={'profilePostBody'} placeholder={'your post'}></Field>
+            </div>
+            <div>
+                <button>Add Post</button>
+            </div>
+        </form>
+    )
+}
+
+export const ProfilePostReduxForm = reduxForm({form: 'profileForm'})(ProfilePostForm)

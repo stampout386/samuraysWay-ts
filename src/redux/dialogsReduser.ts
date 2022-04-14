@@ -1,7 +1,6 @@
 import {ActionType, DialogsPageType, MessagesDataType} from "./store";
 
 const ADD_MESSAGE = "ADD_MESSAGE";
-const CHANGE_NEW_MESSAGE_TEXT = "CHANGE_NEW_MESSAGE_TEXT";
 
 
 let initialState = {
@@ -34,8 +33,7 @@ let initialState = {
         {id: 2, message: "How are you?"},
         {id: 3, message: "You are calling me?"},
         {id: 4, message: "i didn't hear,sorry"},
-    ],
-    newMessageText: ''
+    ]
 }
 
 export const dialogsReducer = (state: DialogsPageType = initialState, action: ActionType): DialogsPageType => {
@@ -45,14 +43,10 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
                 id: new Date().getTime(),
                 message: action.textMessage,
             }
-            // state.messagesData.push(message);
-            // state.newMessageText = "";
-            return {...state, newMessageText: '', messagesData: [...state.messagesData, message]}
+
+            return {...state, messagesData: [...state.messagesData, message]}
         }
-        case CHANGE_NEW_MESSAGE_TEXT: {
-            // state.newMessageText = action.newMessageText;
-            return {...state, newMessageText: action.newMessageText}
-        }
+
         default : {
             return state
         }
@@ -64,13 +58,6 @@ export const addMessageAC = (textMessage: string) => {
     return {
         type: ADD_MESSAGE,
         textMessage
-
-    } as const
-}
-export const onChangeNewMessageTextAC = (newMessageText: string) => {
-    return {
-        type: CHANGE_NEW_MESSAGE_TEXT,
-        newMessageText
 
     } as const
 }

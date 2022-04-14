@@ -3,7 +3,7 @@ import React from "react";
 import {
     ActionType,
 } from "../../redux/store";
-import {addMessageAC, onChangeNewMessageTextAC} from "../../redux/dialogsReduser";
+import {addMessageAC} from "../../redux/dialogsReduser";
 import {Dialogs} from "./Dialogs";
 
 import {connect} from "react-redux";
@@ -23,9 +23,7 @@ let mapDispatchToProps = (dispatch: (action: ActionType) => void) => {
         addMessage: (message: string) => {
             dispatch(addMessageAC(message))
         },
-        onchangeNewMessageText: (message: string) => {
-            dispatch(onChangeNewMessageTextAC(message))
-        }
+
     }
 }
 
