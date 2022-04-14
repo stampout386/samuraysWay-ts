@@ -1,7 +1,7 @@
 import React from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {getProfileThunkCreator, getUserStatusTC, updateStatusTC} from "../../redux/profileReducer";
+import {getProfileTС, getUserStatusTC, updateStatusTC} from "../../redux/profileReducer";
 import {withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthREdirect";
 import {compose} from "redux";
@@ -31,7 +31,7 @@ let mapStateToProps = (state: RootStateType) => {
 }
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getProfileThunkCreator, getUserStatusTC, updateStatusTC}),
+    connect(mapStateToProps, {getProfileThunkCreator: getProfileTС, getUserStatusTC, updateStatusTC}),
     withAuthRedirect,
     withRouter)
 (ProfileContainer)

@@ -1,5 +1,5 @@
 //  Types
-import {addPostAC, onChangeNewPostAC, setUserProfile, setUserStatus} from "./profileReducer";
+import {addPostAC, setUserProfile, setUserStatus} from "./profileReducer";
 import {addMessageAC} from "./dialogsReduser";
 import {StoreReduxType} from "./redux-store";
 import {
@@ -60,7 +60,6 @@ export type ProfileType = {
 
 }
 export type ProfilePageType = {
-    newPostText: string
     postData: Array<PostDataType>
     profile: ProfileType | null
     status: any
@@ -120,7 +119,6 @@ export type ActionType =
 
     ReturnType<typeof addPostAC>
     | ReturnType<typeof addMessageAC>
-    | ReturnType<typeof onChangeNewPostAC>
     | ReturnType<typeof follow>
     | ReturnType<typeof unfollow>
     | ReturnType<typeof setUsers>

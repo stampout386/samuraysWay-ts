@@ -53,7 +53,6 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ac
     }
 }
 
-
 export const addMessageAC = (textMessage: string) => {
     return {
         type: ADD_MESSAGE,
