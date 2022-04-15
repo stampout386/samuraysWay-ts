@@ -4,6 +4,8 @@ import {Post} from "./Post/Post";
 import {PostDataType} from "../../../redux/store";
 
 import {Field, reduxForm} from "redux-form";
+import {maxLenghtCreator, requairedFields} from "../../../utils/validators/validators";
+import {Textarea} from "../../../commons/FormsComponents/FormsComponents";
 
 type MyPostsType = {
     postData: Array<PostDataType>,
@@ -38,12 +40,13 @@ export function MyPosts(props: MyPostsType) {
     )
 }
 
+const maxLength50 = maxLenghtCreator(50);
+
 export const ProfilePostForm = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field component={'textarea'} name={'profilePostBody'} placeholder={'your post'}></Field>
-            </div>
+
+            <Field component={Textarea} name={'profilePostBody'} placeholder={'Post message'} validate={[requairedFields, maxLength50]}></Field>
             <div>
                 <button>Add Post</button>
             </div>

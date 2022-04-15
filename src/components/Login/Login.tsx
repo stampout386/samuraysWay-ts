@@ -2,6 +2,8 @@ import React from "react";
 import s from './Login.module.css'
 import {reduxForm} from "redux-form";
 import {Field} from 'redux-form'
+import {Input} from "../../commons/FormsComponents/FormsComponents";
+import {requairedFields} from "../../utils/validators/validators";
 
 
 export function Login() {
@@ -22,10 +24,11 @@ export const LoginForm = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={'input'} placeholder={'Login'} name={'login'}/>
+                <Field component={Input} placeholder={'Login'} name={'login'} validate={[requairedFields]}/>
             </div>
             <div>
-                <Field placeholder={'Password'} component={'input'} name={'password'}/>
+
+                <Field placeholder={'Password'} component={Input} name={'password'} validate={[requairedFields]}/>
             </div>
             <div>
 

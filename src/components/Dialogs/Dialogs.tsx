@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import s from './Dialogs.module.css'
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
@@ -6,6 +6,8 @@ import {
     DialogsPagePropsType,
 } from "../../redux/store";
 import {reduxForm, Field} from "redux-form";
+import {Textarea} from "../../commons/FormsComponents/FormsComponents";
+import {requairedFields} from "../../utils/validators/validators";
 
 export function Dialogs(props: DialogsPagePropsType) {
 
@@ -48,7 +50,7 @@ export function Dialogs(props: DialogsPagePropsType) {
 const AddMessageForm = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field component={'textarea'} name={'newMessagesBody'} placeholder={'Enter your message'}/>
+            <Field component={Textarea} name={'newMessagesBody'} placeholder={'Enter your message'} validate={[requairedFields]}/>
             <button>Add message</button>
         </form>
     )
