@@ -15,7 +15,7 @@
     margin: 5px;
     text-decoration: none;
     font-size: larger;
-    width: 300px;
+    width: 200px;
 }
 
 .login a {
@@ -27,6 +27,7 @@
 }
 
 .logoutButton {
+    margin: 3px;
     width: 60px;
     height: 20px;
     font-size: small;

@@ -7,6 +7,7 @@ import {requairedFields} from "../../utils/validators/validators";
 import {connect} from "react-redux";
 import {loginThunkCreator} from "../../redux/authReducer";
 import {Redirect} from "react-router-dom";
+import style from './Login.module.css'
 
 
 export function Login(props: any) {
@@ -31,16 +32,18 @@ export const LoginForm = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field component={Input} placeholder={'Login'} name={'login'} validate={[requairedFields]}/>
+                <div>
+                    <Field component={Input} placeholder={'Login'} name={'login'} validate={[requairedFields]}/>
+                </div>
+                <div>
+                    <Field placeholder={'Password'} component={Input} name={'password'} validate={[requairedFields]} type={'password'}/>
+                </div>
+                <div>
+                    <Field type="checkbox" component={'input'} name={'rememberMe'} id={'check'}/> <label htmlFor="check">remember me</label>
+                </div>
+                {props.error && <span className={style.spanError}>{props.error}</span>}
             </div>
-            <div>
 
-                <Field placeholder={'Password'} component={Input} name={'password'} validate={[requairedFields]} type={'password'}/>
-            </div>
-            <div>
-
-                <Field type="checkbox" component={'input'} name={'rememberMe'} id={'check'}/> <label htmlFor="check">remember me</label>
-            </div>
             <div>
                 <button>Login</button>
             </div>

@@ -4,7 +4,6 @@ import {NavLink} from "react-router-dom";
 
 export function Header(props: any) {
     const logoutClick = () => {
-        console.log(props)
         props.logoutThunkCreator()
     }
     return (
@@ -18,10 +17,10 @@ export function Header(props: any) {
 
 
                     <div className={css.authUser}>
-                        <div>login: {props.auth.login}</div>
-                        <div>email:{props.auth.email}</div>
-
+                        <div>{props.auth.login}</div>
+                        <div>
                             <button className={css.logoutButton} onClick={logoutClick}>Logout</button>
+                        </div>
 
                     </div>
                     : <NavLink to={'/login'} className={css.login}>Login</NavLink>

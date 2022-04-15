@@ -1,6 +1,7 @@
 import {ActionType} from "./store";
 import {Dispatch} from "redux";
 import {loginAPI} from "../api/usersAPI";
+import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = "SET_USER_DATA";
 
@@ -45,12 +46,15 @@ export const getAuthLoginThunkCreator = () => (dispatch: Dispatch) => {
         })
 }
 
-export const loginThunkCreator = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
+export const loginThunkCreator = (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {
     loginAPI.login(email, password, rememberMe)
         .then(data => {
             if (data.resultCode === 0) {
-                // @ts-ignore
                 dispatch(getAuthLoginThunkCreator())
+            } else {
+                let errorMessage = data.messages.length > 0 ? data.messages[0] : 'Some error';
+
+                dispatch(stopSubmit('login', {_error: errorMessage}))
             }
         })
 }

@@ -41,7 +41,6 @@ export const loginAPI = {
             .then(response => response.data)
     }
 }
-
 export const profileAPI = {
     getProfileRequest(userId: number) {
         return instance.get(`profile/${userId}`)
