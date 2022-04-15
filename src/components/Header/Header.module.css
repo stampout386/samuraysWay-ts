@@ -12,9 +12,10 @@
 
 .login {
     float: right;
-    margin: 8px;
+    margin: 5px;
     text-decoration: none;
     font-size: larger;
+    width: 300px;
 }
 
 .login a {
@@ -22,5 +23,11 @@
 }
 
 .authUser {
+    font-size: small;
+}
+
+.logoutButton {
+    width: 60px;
+    height: 20px;
     font-size: small;
 }

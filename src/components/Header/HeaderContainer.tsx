@@ -1,7 +1,7 @@
 import React from "react";
 import {Header} from "./Header";
 import {connect} from "react-redux";
-import {getAuthLoginThunkCreator, setUserData} from "../../redux/authReducer";
+import {getAuthLoginThunkCreator, logoutThunkCreator} from "../../redux/authReducer";
 
 import {RootStateType} from "../../redux/redux-store";
 
@@ -23,4 +23,4 @@ let mapStateToProps = (state: RootStateType) => {
     }
 }
 
-export default connect(mapStateToProps, {setUserData, getAuthLoginThunkCreator})(HeaderContainer)
+export default connect(mapStateToProps, {logoutThunkCreator, getAuthLoginThunkCreator})(HeaderContainer)
