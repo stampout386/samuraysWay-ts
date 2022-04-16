@@ -13,17 +13,25 @@ import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {LoginContainer} from "./components/Login/Login";
 import {connect} from "react-redux";
-import {getAuthLoginThunkCreator} from "./redux/authReducer";
+
 import {compose} from "redux";
+import {getInitialazedTC} from "./redux/appReducer";
+import {RootStateType} from "./redux/redux-store";
+import {Preloader} from "./commons/Preloader/Preloader";
 
 
 class App extends React.Component <any> {
+
     componentDidMount() {
-        this.props.getAuthLoginThunkCreator()
+        this.props.getInitialazedTC()
     }
 
     render() {
+        if (!this.props.initialazed) {
+            return <Preloader/>
+        }
         return (
+
             <div className='app-wrapper'>
                 <HeaderContainer/>
                 <NavbarContainer/>
@@ -48,8 +56,14 @@ class App extends React.Component <any> {
     }
 }
 
+const mapStateToProps = (state: RootStateType) => {
+    return {
+        initialazed: state.app.initialized
+    }
+}
+
 
 export default compose<React.ComponentType>(
     withRouter,
-    connect(null, {getAuthLoginThunkCreator})
+    connect(mapStateToProps, {getInitialazedTC})
 )(App);

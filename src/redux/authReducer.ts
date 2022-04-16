@@ -37,7 +37,7 @@ export const setUserData = (userId: number, email: string, login: string, isAuth
 //thunk
 
 export const getAuthLoginThunkCreator = () => (dispatch: Dispatch) => {
-    loginAPI.getAuthLoginRequest()
+    return loginAPI.getAuthLoginRequest()
         .then(data => {
             if (data.resultCode === 0) {
                 let {id, login, email} = data.data

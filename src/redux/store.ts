@@ -12,6 +12,7 @@ import {
     UsersType
 } from "./usersReduser";
 import {setUserData} from "./authReducer";
+import {setInitialazedSucsess} from "./appReducer";
 
 export type MessagesDataType = {
     id: number
@@ -129,6 +130,7 @@ export type ActionType =
     | ReturnType<typeof setUserData>
     | ReturnType<typeof toogleIsFollowingProgress>
     | ReturnType<typeof setUserStatus>
+    | ReturnType<typeof setInitialazedSucsess>
 
 
 // export type StoreType = {
