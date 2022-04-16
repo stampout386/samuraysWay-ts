@@ -8,9 +8,7 @@ import {RootStateType} from "../../redux/redux-store";
 
 class HeaderContainer extends React.Component<any> {
 
-    componentDidMount() {
-        this.props.getAuthLoginThunkCreator()
-    }
+
 
     render() {
         return <Header {...this.props}/>
@@ -23,4 +21,4 @@ let mapStateToProps = (state: RootStateType) => {
     }
 }
 
-export default connect(mapStateToProps, {logoutThunkCreator, getAuthLoginThunkCreator})(HeaderContainer)
+export default connect(mapStateToProps, {logoutThunkCreator})(HeaderContainer)

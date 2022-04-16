@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Route, Switch} from "react-router-dom";
+import {Route, Switch, withRouter} from "react-router-dom";
 
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
@@ -12,34 +12,44 @@ import {UsersContainer} from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {LoginContainer} from "./components/Login/Login";
+import {connect} from "react-redux";
+import {getAuthLoginThunkCreator} from "./redux/authReducer";
+import {compose} from "redux";
 
 
-function App() {
+class App extends React.Component <any> {
+    componentDidMount() {
+        this.props.getAuthLoginThunkCreator()
+    }
 
+    render() {
+        return (
+            <div className='app-wrapper'>
+                <HeaderContainer/>
+                <NavbarContainer/>
+                <div className='content'>
+                    <Switch>
+                        <Route path={'/profile/:userId?'}
+                               component={ProfileContainer}/>
+                        <Route path={'/dialogs'}
+                               component={DialogsContainer}/>
+                        <Route path={'/users'} component={UsersContainer}/>
+                        <Route path={'/news'} component={News}/>
+                        <Route path={'/music'} component={Music}/>
+                        <Route path={'/settings'} component={Settings}/>
+                        <Route path={'/login'} component={LoginContainer}/>
 
-    return (
-        <div className='app-wrapper'>
-            <HeaderContainer/>
-            <NavbarContainer/>
-            <div className='content'>
-                <Switch>
-                    <Route path={'/profile/:userId?'}
-                           component={ProfileContainer}/>
-                    <Route path={'/dialogs'}
-                           component={DialogsContainer}/>
-                    <Route path={'/users'} component={UsersContainer}/>
-                    <Route path={'/news'} component={News}/>
-                    <Route path={'/music'} component={Music}/>
-                    <Route path={'/settings'} component={Settings}/>
-                    <Route path={'/login'} component={LoginContainer}/>
+                    </Switch>
+                </div>
 
-                </Switch>
             </div>
 
-        </div>
-
-    );
+        );
+    }
 }
 
 
-export default App;
+export default compose<React.ComponentType>(
+    withRouter,
+    connect(null, {getAuthLoginThunkCreator})
+)(App);
